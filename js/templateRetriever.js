@@ -3,7 +3,8 @@
  * @author Stanley Clark <me@stanrogo.com>
  * @version 1.0.0
  *
- *
+ * Class to retrieve templates from the server and store in memory for easy duplicate access
+ * TODO: Implement proper error handling for the requests
  */
 
 class TemplateRetriever{
@@ -24,13 +25,13 @@ class TemplateRetriever{
             }
             else if(!this.runningRequests[templateName]){
 
-                this.runningRequest = this._doRequest(templateName);
+                this.runningRequests[templateName] = this._doRequest(templateName);
             }
 
-            this.runningRequest.then((data) => {
+            this.runningRequests[templateName].then((data) => {
 
                 this.storedTemplates[templateName] = data;
-                this.runningRequest = null;
+                this.runningRequests[templateName] = null;
                 resolve(data);
             });
         });

@@ -2,8 +2,9 @@
  * This class takes advantage of all other classes to control what happens on the page
  */
 
-import APIRequest from './APIRequest.js';
+import apiRequest from './APIRequest.js';
 import Post from './post.js';
+import Helpers from "./helpers.js";
 
 export default class PostsController{
 
@@ -17,12 +18,11 @@ export default class PostsController{
         return new Promise((resolve, reject) => {
 
             const posts = [];
-            const request = new APIRequest();
-            request.get('entries').then((data)=> {
+            apiRequest.getEntries().then((data)=> {
 
                 data.items.forEach((post) => {
 
-                    if(!Post.hasContent(post)){
+                    if(!Helpers.dataValid(post, `post`)){
 
                         return;
                     }
@@ -42,7 +42,6 @@ export default class PostsController{
 
                         this.postsContainer.innerHTML += renderedPost;
                     });
-
                 });
 
                 resolve();

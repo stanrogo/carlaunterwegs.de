@@ -26,6 +26,24 @@ export default class Helpers{
         return `${weekDay}, ${month} ${dateNumber}, ${year}`;
     }
 
+    static dataValid(data, contentType){
+
+        const isCorrectContent = data.sys.contentType.sys.id === contentType;
+        let hasRequiredField = false;
+
+        switch(contentType){
+            case `about`:
+                hasRequiredField = !!data.fields.summary;
+                break;
+
+            case `post`:
+                hasRequiredField = !!data.fields.content;
+                break;
+        }
+
+        return isCorrectContent && hasRequiredField;
+    }
+
     static get customMarkedInstance(){
 
         const renderer = new marked.Renderer();

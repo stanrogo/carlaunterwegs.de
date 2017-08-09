@@ -8,39 +8,71 @@
 
 import Helpers from "./helpers.js";
 
-export default class APIRequest{
+class APIRequest{
 
-    constructor(data = {}){
+    constructor(){
 
         // Set the parameters needed to construct a request to the server
-        // I don't know why we would need to change these, but it helps to have these in here
 
-        this.endPointBase = data.endPointBase || APIRequest.defaultParameters.endPointBase;
-        this.spaceID = data.spaceID || APIRequest.defaultParameters.spaceID;
-        this.accessToken = data.accessToken || APIRequest.defaultParameters.accessToken;
+        this.endPointBase = this._defaultParameters.endPointBase;
+        this.spaceID = this._defaultParameters.spaceID;
+        this.accessToken = this._defaultParameters.accessToken;
 
         // The locale for the request is retrieved via the helpers only
 
-        this.locale = Helpers.locale || Helpers.localeTable[APIRequest.defaultParameters.locale];
+        this.locale = Helpers.locale || Helpers.localeTable[this._defaultParameters.locale];
+
+        // Set the cached data and running requests
+
+        this.data = {};
+        this.runningRequests = {};
+    }
+
+    setCustomOptions(data){
+
+        this.endPointBase = data.endPointBase || this._defaultParameters.endPointBase;
+        this.spaceID = data.spaceID || this._defaultParameters.spaceID;
+        this.accessToken = data.accessToken || this._defaultParameters.accessToken;
     }
 
     /**
      * Get some data from the server
      *
-     * @param {String} endPoint
      * @return {Promise}
      */
 
-    get(endPoint){
+    getEntries(){
 
         return new Promise((resolve, reject) => {
 
-            const URL = this.constructURL(endPoint);
+            if(this.data.entries){
+
+                resolve(this.data.entries);
+            }
+            else if(!this.runningRequests.entries){
+
+                this.runningRequests.entries = this._get(`entries`);
+            }
+
+            this.runningRequests.entries.then((data) => {
+
+                this.data.entries = data;
+                this.runningRequests.entries = null;
+                resolve(data);
+            });
+        });
+    }
+
+    _get(endPoint){
+
+        return new Promise((resolve, reject) => {
+
+            const URL = this._constructURL(endPoint);
 
             const request = new XMLHttpRequest();
             request.onreadystatechange = function() {
 
-                if (this.readyState === 4 && this.status === 200) {
+                if(this.readyState === XMLHttpRequest.DONE && this.status === 200){
 
                     resolve(JSON.parse(this.responseText));
                 }
@@ -51,12 +83,12 @@ export default class APIRequest{
         });
     }
 
-    constructURL(endPoint){
+    _constructURL(endPoint){
 
         return `${this.endPointBase}${this.spaceID}/${endPoint}?access_token=${this.accessToken}&locale=${this.locale}`;
     }
 
-    static get defaultParameters(){
+    get _defaultParameters(){
 
         return {
             endPointBase: `https://cdn.contentful.com/spaces/`,
@@ -66,3 +98,7 @@ export default class APIRequest{
         }
     }
 }
+
+let apiRequest = new APIRequest();
+
+export default apiRequest;

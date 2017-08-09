@@ -6,9 +6,10 @@
  * Handles fetching and rendering of content in about me section
  */
 
-import APIRequest from "./APIRequest.js";
+import apiRequest from "./APIRequest.js";
 import HandleBars from '../vendor/handlebars-v4.0.10.js';
 import templateRetriever from './templateRetriever.js';
+import Helpers from "./helpers.js";
 
 export default class About{
 
@@ -21,12 +22,11 @@ export default class About{
 
         return new Promise((resolve, reject) => {
 
-            const request = new APIRequest();
-            request.get('entries').then((data)=> {
+            apiRequest.getEntries().then((entries) => {
 
-                data.items.some((data) => {
+                entries.items.some((entry) => {
 
-                    if(!About.hasContent(data)){
+                    if(!Helpers.dataValid(entry, `about`)){
 
                         return false;
                     }
@@ -36,22 +36,16 @@ export default class About{
                         const hbTemplate = HandleBars.compile(template);
 
                         this.container.innerHTML = hbTemplate({
-                            title: data.fields.title,
-                            summary: data.fields.summary
+                            title: entry.fields.title,
+                            summary: entry.fields.summary
                         });
+
+                        resolve();
                     });
 
                     return true;
                 });
-
-                resolve();
             });
         });
-    }
-
-    static hasContent(data){
-
-        const isAboutSection = data.sys.contentType.sys.id === 'about';
-        return isAboutSection && !!data.fields.summary;
     }
 }
