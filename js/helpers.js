@@ -13,6 +13,7 @@ export default class Helpers{
     /**
      * Translates a date to Day Month format
      * @param {Date} date
+     * @return {String}
      */
 
     static dateToSimpleDate(date){
@@ -22,7 +23,7 @@ export default class Helpers{
         const dateNumber = date.getDate();
         const year = date.getFullYear();
 
-        return `${weekDay}, ${month} ${dateNumber}, ${year}`;
+        return `${weekDay},&nbsp;${month} ${dateNumber}, ${year}`;
     }
 
     static get customMarkedInstance(){

@@ -111,3 +111,26 @@ nav .brand-logo i.material-icons{
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+
+.tag-container{
+  display: flex;
+  align-items: center;
+}
+
+.post-block--label-container{
+  display: flex;
+  align-items: center;
+}
+
+.post-block--label-container i{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.post-block--label-container .tag{
+  margin: 0 1rem 0 0.5rem;
+}
+
+.post-block--label-container .tagged-in{
+  padding-right: 1rem;
+}
