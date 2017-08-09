@@ -8,9 +8,9 @@
  * We collate all of the sections of our website that we want to use and execute their functionality
  */
 
-import Posts from "./posts.js";
+import Posts from "../modules/posts/posts.js";
 import LanguageSelection from "./languageSelection.js";
-import About from './about.js';
+import About from '../modules/about/about.js';
 import Router from './router.js';
 
 const carlaBlog = {};
@@ -19,7 +19,7 @@ carlaBlog.renderPromises = [];
 // Render all posts
 
 carlaBlog.posts = new Posts();
-carlaBlog.renderPromises.push(carlaBlog.posts.renderAllPosts());
+carlaBlog.renderPromises.push(carlaBlog.posts.render());
 
 // Render about section
 
