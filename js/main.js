@@ -11,6 +11,7 @@
 import PostsController from "./postsController.js";
 import LanguageSelection from "./languageSelection.js";
 import About from './about.js';
+import Router from './router.js';
 
 const carlaBlog = {};
 carlaBlog.renderPromises = [];
@@ -32,4 +33,23 @@ carlaBlog.languageSelection = new LanguageSelection();
 Promise.all(carlaBlog.renderPromises).then(() => {
     document.getElementById(`spinner-container`).style.display = `none`;
 });
+
+// Router set up
+carlaBlog.router = new Router({ mode: 'history'});
+carlaBlog.router.navigate();
+
+carlaBlog.router
+    .add(/about/, function() {
+
+    })
+    .add(/products\/(.*)\/edit\/(.*)/, function() {
+
+    })
+    .add(function() {
+
+    })
+    .check('/products/12/edit/22').listen();
+
+// forwarding
+carlaBlog.router.navigate('/about');
 
