@@ -1,55 +1,29 @@
-const apiEndPoint = `https://cdn.contentful.com/spaces/zb623ajubmgz/entries?access_token=1d7129a51099773a878425f241574944d855cedde56d822194b76a4a0e2632cd`;
-const posts = [];
-const postsContainer = document.querySelector(`.js-posts-container`);
-const months = [`Jan`, `Feb`, `Mar`, `Apr`, `May`, `Jun`, `Jul`, `Aug`, `Sep`, `Oct`, `Nov`, 'Dec'];
+/**
+ * This class takes advantage of all other classes to control what happens on the page
+ */
 
-const xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
+class Main{
 
-    if (this.readyState === 4 && this.status === 200) {
+    constructor(APIRequest, Post, Helpers){
 
-        const data = JSON.parse(this.responseText).items;
+        this.APIRequest = APIRequest;
+        this.Post = Post;
+        this.Helpers = Helpers;
 
-        data.forEach((post) => {
+        this.postsContainer = document.querySelector(`.js-posts-container`);
+    }
 
-            const postInstance = new Post(post.fields);
-            postInstance.addPostToDOM();
-            posts.push(postInstance);
+    renderAllPosts(){
 
+        const request = new this.APIRequest();
+        request.get('entries').then((data)=> {
+
+            data.items.forEach((post) => {
+
+                const postInstance = new this.Post(this.Helpers, post.fields);
+                this.postsContainer.appendChild(postInstance.createNewPost());
+            });
         });
     }
-};
-xhttp.open(`GET`, apiEndPoint, true);
-xhttp.send();
-
-class Post{
-
-    constructor(data){
-
-        this.title = data.title;
-        this.content = marked(data.content);
-
-        const date = new Date(data.date);
-        this.date =  `${date.getDate()} ${months[date.getMonth()]}`;
-    }
-
-    addPostToDOM(){
-
-        const html = `
-            <div class="ribbon-container">
-                <span>${this.date}</span>
-            </div>
-            <article class="post-block--article">
-                
-                <h1 class="post-block--title">${this.title}</h1>
-                <div class="post-block--content light">${this.content}</div>
-            </article>
-        `;
-
-        const postBlock = document.createElement('div');
-        postBlock.className = `col s12 m8 offset-m2 z-depth-2 post-block`;
-        postBlock.innerHTML = html;
-
-        postsContainer.appendChild(postBlock);
-    }
 }
+
