@@ -10,14 +10,26 @@
 
 import PostsController from "./postsController.js";
 import LanguageSelection from "./languageSelection.js";
+import About from './about.js';
 
 const carlaBlog = {};
+carlaBlog.renderPromises = [];
 
 // Render all posts
 
 carlaBlog.postsController = new PostsController();
-carlaBlog.postsController.renderAllPosts();
+carlaBlog.renderPromises.push(carlaBlog.postsController.renderAllPosts());
+
+// Render about section
+
+carlaBlog.about = new About();
+carlaBlog.renderPromises.push(carlaBlog.about.render());
 
 // Enable language selection on the site
 
 carlaBlog.languageSelection = new LanguageSelection();
+
+Promise.all(carlaBlog.renderPromises).then(() => {
+    document.getElementById(`spinner-container`).style.display = `none`;
+});
+

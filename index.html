@@ -12,6 +12,7 @@
     <link href="css/main.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="css/about.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/spinner.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
 
@@ -42,6 +43,12 @@
     </div>
 </header>
 
+<div id="spinner-container">
+    <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+        <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+    </svg>
+</div>
+
 <!----------------- Main Content ------------------>
 
 <main class="container container--main">
@@ -55,9 +62,8 @@
         <!--------------- About Section ------------->
 
         <div class="col s12 m3">
-            <div class="about-me--container white z-depth-1">
-                <h1 class="about-me--heading teal white-text">About me</h1>
-                <div class="about-me--text">I'm Carla Demmering, This is being written by Stanley Clark. I'm going to go abroad on my exchange semester soon!</div>
+            <div class="about-me--container white z-depth-1 js-about-me">
+                <!-- Dynamically generated content inserted here -->
             </div>
         </div>
     </div>

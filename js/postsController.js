@@ -14,30 +14,35 @@ export default class PostsController{
 
     renderAllPosts(){
 
-        const posts = [];
-        const request = new APIRequest();
-        request.get('entries').then((data)=> {
+        return new Promise((resolve, reject) => {
 
-            data.items.forEach((post) => {
+            const posts = [];
+            const request = new APIRequest();
+            request.get('entries').then((data)=> {
 
-                if(!Post.hasContent(post)){
+                data.items.forEach((post) => {
 
-                    return;
-                }
+                    if(!Post.hasContent(post)){
 
-                const postInstance = new Post(post);
-                posts.push(postInstance);
-            });
+                        return;
+                    }
 
-            posts.sort((a, b) => {
+                    const postInstance = new Post(post);
+                    posts.push(postInstance);
+                });
 
-                return a.timestamp < b.timestamp;
-            });
+                posts.sort((a, b) => {
 
-            posts.forEach((post) => {
+                    return a.timestamp < b.timestamp;
+                });
 
-                const renderedPost = post.createNewPost();
-                this.postsContainer.appendChild(renderedPost);
+                posts.forEach((post) => {
+
+                    const renderedPost = post.createNewPost();
+                    this.postsContainer.appendChild(renderedPost);
+                });
+
+                resolve();
             });
         });
     }

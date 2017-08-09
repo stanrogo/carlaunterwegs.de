@@ -46,6 +46,8 @@ export default class Post{
 
     static hasContent(post){
 
-        return !!post.fields.content;
+        const isPost = post.sys.contentType.sys.id === 'post';
+
+        return isPost && !!post.fields.content;
     }
 }
