@@ -7,6 +7,7 @@
  */
 
 import Helpers from './helpers.js';
+import HandleBars from '../vendor/handlebars-v4.0.10.js';
 
 export default class Post{
 
@@ -18,58 +19,25 @@ export default class Post{
         this.date = new Date(data.fields.date);
         this.timestamp = this.date.getTime();
         this.simpleDate =  Helpers.dateToSimpleDate(this.date);
+        this.template = document.getElementById('post-template').innerHTML;
     }
 
     /**
-     * Create the post template and append it to the DOM
+     * Fill out the post template and return as HTML
+     *
+     * @return {String} - the HTML that should be appened to the DOM
      */
 
     createNewPost(){
 
-        const html = `
-            <div class="date-container black">
-                <i class="material-icons white-text">date_range</i>
-                <span class="date-container--date white-text">${this.simpleDate}</span>
-            </div>
-            <article class="post-block--article z-depth-1 white">
-                
-                <h1 class="post-block--title">${this.title}</h1>
-                <hr/>
-                <div class="post-block--label-container">
-                    <span class="tagged-in">Tagged in: </span>
-                </div>
-                <hr/>
-                <div class="post-block--content light">${this.content}</div>
-            </article>
-        `;
+        const hbTemplate = HandleBars.compile(this.template);
 
-        const postBlock = document.createElement(`div`);
-        postBlock.className = `col s12 post-block`;
-        postBlock.innerHTML = html;
-
-        const labelContainer = postBlock.querySelector(`.post-block--label-container`);
-
-        console.log(this.tags);
-        this.tags.forEach((tagName) => {
-
-            const tagContainer = document.createElement(`span`);
-            const tag = document.createElement(`span`);
-            const tagIcon = document.createElement(`i`);
-
-            tagIcon.innerText = `label`;
-            tagIcon.className = `material-icons`;
-
-            tag.innerText = tagName;
-            tag.className = `tag`;
-
-            tagContainer.className = `tag-container`;
-
-            tagContainer.appendChild(tagIcon);
-            tagContainer.appendChild(tag);
-            labelContainer.appendChild(tagContainer);
+        return hbTemplate({
+            title: this.title,
+            content: this.content,
+            date: this.simpleDate,
+            tags: this.tags
         });
-
-        return postBlock;
     }
 
     static hasContent(post){

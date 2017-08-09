@@ -7,12 +7,14 @@
  */
 
 import APIRequest from "./APIRequest.js";
+import HandleBars from '../vendor/handlebars-v4.0.10.js';
 
 export default class About{
 
     constructor(){
 
         this.container = document.querySelector(`.js-about-me`);
+        this.template = document.getElementById(`about-me-template`).innerHTML;
     }
 
     render(){
@@ -29,10 +31,12 @@ export default class About{
                         return false;
                     }
 
-                    this.container.innerHTML = `
-                    <h1 class="about-me--heading teal white-text">${data.fields.title}</h1>
-                    <div class="about-me--text">${data.fields.summary}</div>
-                `;
+                    const hbTemplate = HandleBars.compile(this.template);
+
+                    this.container.innerHTML = hbTemplate({
+                        title: data.fields.title,
+                        summary: data.fields.summary
+                    });
 
                     return true;
                 });

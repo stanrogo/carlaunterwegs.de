@@ -23,7 +23,7 @@ export default class Helpers{
         const dateNumber = date.getDate();
         const year = date.getFullYear();
 
-        return `${weekDay},&nbsp;${month} ${dateNumber}, ${year}`;
+        return `${weekDay}, ${month} ${dateNumber}, ${year}`;
     }
 
     static get customMarkedInstance(){

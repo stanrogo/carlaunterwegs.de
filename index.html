@@ -55,7 +55,36 @@
     <div class="row">
         <div class="col s12 m9">
             <div class="row section js-posts-container">
+
                 <!-- Dynamically generated content inserted here -->
+
+                <script id="post-template" type="text/x-handlebars-template">
+
+                    <div class="col s12 post-block">
+                        <div class="date-container black">
+                            <i class="material-icons white-text">date_range</i>
+                            <span class="date-container--date white-text">{{date}}</span>
+                        </div>
+                        <article class="post-block--article z-depth-1 white">
+
+                            <h1 class="post-block--title">{{title}}</h1>
+                            <hr/>
+                            <div class="post-block--label-container">
+                                <span class="tagged-in">Tagged in: </span>
+                                {{#each tags}}
+                                    <span class="tag-container">
+                                        <i class="material-icons">label</i>
+                                        <span class="tag">{{this}}</span>
+                                    </span>
+                                {{/each}}
+                            </div>
+                            <hr/>
+                            <div class="post-block--content light">{{{content}}}</div>
+                        </article>
+                    </div>
+
+                </script>
+
             </div>
         </div>
 
@@ -63,7 +92,15 @@
 
         <div class="col s12 m3">
             <div class="about-me--container white z-depth-1 js-about-me">
+
                 <!-- Dynamically generated content inserted here -->
+
+                <script id="about-me-template" type="text/x-handlebars-template">
+
+                    <h1 class="about-me--heading teal white-text">{{title}}</h1>
+                    <div class="about-me--text">{{summary}}</div>
+
+                </script>
             </div>
         </div>
     </div>

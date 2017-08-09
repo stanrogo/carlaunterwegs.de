@@ -50,6 +50,3 @@ carlaBlog.router
     })
     .check('/products/12/edit/22').listen();
 
-// forwarding
-carlaBlog.router.navigate('/about');
-
