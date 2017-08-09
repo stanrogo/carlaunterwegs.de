@@ -1,29 +1,36 @@
-<div class="col s12 post-block">
-    <div class="date-container black">
-        <i class="material-icons white-text">date_range</i>
-        <span class="date-container--date white-text">{{date}}</span>
-    </div>
-    <article class="post-block--article z-depth-1 white">
+<div id="posts-container" class="row section">
 
-        <h1 class="post-block--title">{{title}}</h1>
+    {{#each Posts}}
 
-        <hr/>
+        <div class="col s12 post-block">
+            <div class="date-container black">
+                <i class="material-icons white-text">date_range</i>
+                <span class="date-container--date white-text">{{date}}</span>
+            </div>
+            <article class="post-block--article z-depth-1 white">
 
-        <div class="post-block--label-container">
-            <span class="tagged-in">Tagged in: </span>
+                <h1 class="post-block--title">{{title}}</h1>
 
-            {{#each tags}}
+                <hr/>
 
-                <span class="tag-container">
-                    <i class="material-icons">label</i>
-                    <span class="tag">{{this}}</span>
-                </span>
+                <div class="flex-vertical-center">
+                    <span class="post-block--tagged-in">Tagged in: </span>
 
-            {{/each}}
+                    {{#each tags}}
+
+                        <span class="flex-vertical-center">
+                            <i class="material-icons post-block--tag-icon">label</i>
+                            <span class="post-block--tag-text">{{this}}</span>
+                        </span>
+
+                    {{/each}}
+                </div>
+
+                <hr/>
+
+                <div class="post-block--content light">{{{content}}}</div>
+            </article>
         </div>
 
-        <hr/>
-
-        <div class="post-block--content light">{{{content}}}</div>
-    </article>
+    {{/each}}
 </div>

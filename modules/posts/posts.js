@@ -13,7 +13,7 @@ export default class Posts extends DataModule{
 
     constructor(){
 
-        super(document.querySelector(`.js-posts-container`), `post`, `posts`);
+        super(document.getElementsByClassName(`js-posts`)[0], `post`, `posts`);
     }
 
     _sortEntries(a, b){
@@ -26,16 +26,25 @@ export default class Posts extends DataModule{
         return true;
     }
 
-    _fillTemplateObject(entry){
+    _fillTemplateObject(entries){
 
-        const date = new Date(entry.date);
+        const genObject = {
+            Posts: []
+        };
 
-        return {
-            title: entry.title,
-            content: entry.content,
-            date: Helpers.dateToSimpleDate(date),
-            tags: entry.tags
-        }
+        entries.forEach((entry) => {
+
+            const date = new Date(entry.fields.date);
+
+            genObject.Posts.push({
+                title: entry.fields.title,
+                content: entry.fields.content,
+                date: Helpers.dateToSimpleDate(date),
+                tags: entry.fields.tags
+            });
+        });
+
+        return genObject;
     }
 }
 

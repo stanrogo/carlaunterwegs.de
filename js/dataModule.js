@@ -25,18 +25,26 @@ export default class DataModule{
 
             apiRequest.getEntries().then((entries) => {
 
-                entries.items.sort(this._sortEntries);
+                const clonedEntries = JSON.parse(JSON.stringify(entries));
 
-                entries.items.forEach((entry) => {
+                // Filter the entries on only the current content type
 
-                    if(this._dataInvalid(entry, this.contentType)) return;
+                clonedEntries.items.forEach((entry, index) => {
 
-                    templateRetriever.retrieve(this.moduleName).then((template) => {
+                    if(this._dataInvalid(entry)) clonedEntries.items.splice(index, 1);
+                });
 
-                        const hbTemplate = HandleBars.compile(template);
-                        const generatedObject = this._fillTemplateObject(entry.fields);
-                        this.container.innerHTML += hbTemplate(generatedObject);
-                    });
+                // Sort the entries
+
+                clonedEntries.items.sort(this._sortEntries);
+
+                // Finally, render the entries to the template
+
+                templateRetriever.retrieve(this.moduleName).then((template) => {
+
+                    const hbTemplate = HandleBars.compile(template);
+                    const generatedObject = this._fillTemplateObject(clonedEntries.items);
+                    this.container.innerHTML = hbTemplate(generatedObject);
                 });
 
                 resolve();
@@ -54,12 +62,12 @@ export default class DataModule{
         return {};
     }
 
-    _dataInvalid(data, contentType){
+    _dataInvalid(data){
 
-        const isCorrectContent = data.sys.contentType.sys.id === contentType;
+        const isCorrectContent = data.sys.contentType.sys.id === this.contentType;
         let hasRequiredField = false;
 
-        switch(contentType){
+        switch(this.contentType){
             case `about`:
                 hasRequiredField = !!data.fields.summary;
                 break;
@@ -69,6 +77,6 @@ export default class DataModule{
                 break;
         }
 
-        return !isCorrectContent || !hasRequiredField;
+        return isCorrectContent === false || hasRequiredField === false;
     }
 }

@@ -12,14 +12,19 @@ export default class About extends DataModule{
 
     constructor(){
 
-        super(document.querySelector(`.js-about-me`), `about`, `about`);
+        super(document.getElementsByClassName(`js-about-me`)[0], `about`, `about`);
     }
 
-    _fillTemplateObject(entry){
+    _fillTemplateObject(entries){
 
-        return {
-            title: entry.title,
-            summary: entry.summary
+        const genObject = {};
+
+        if(entries.length > 0){
+
+            genObject.title = entries[0].fields.title;
+            genObject.summary = entries[0].fields.summary;
         }
+
+        return genObject;
     }
 }

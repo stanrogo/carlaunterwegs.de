@@ -6,10 +6,27 @@
   display: flex;
 }
 
+.container--header{
+  z-index: 25;
+  position: relative;
+  height: 200px;
+  align-items: center;
+  justify-content: center;
+}
+
+.container--main{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Make all material icons circles */
+
 .material-icons{
   border-radius: 50%;
   padding: 0.6rem;
 }
+
+/* Provide easy to use image centering */
 
 .image-wrapper{
   position: absolute;
@@ -32,13 +49,15 @@
   filter: blur(5px);
 }
 
-.container--header{
-  z-index: 25;
-  position: relative;
-  height: 200px;
+/* Define helper styling */
+
+.flex-vertical-center{
+  display: flex;
   align-items: center;
-  justify-content: center;
 }
+
+
+/* TODO: other shit */
 
 #site-header{
   position: relative;
@@ -56,30 +75,9 @@ nav .brand-logo i.material-icons{
   padding: 0;
 }
 
-@media all and (min-width: 768px){
-
-  #site-header img{
-
-  }
-}
-
 .page-footer-column{
   display: flex;
   align-items: center;
-}
-
-.date-container{
-  position: relative;
-  display: flex;
-  float: left;
-  clear: both;
-  align-items: center;
-  margin-bottom: -1.25rem;
-}
-
-.date-container--date{
-  padding: 0 1rem 0 0;
-  text-transform: uppercase;
 }
 
 .header{
@@ -91,46 +89,4 @@ nav .brand-logo i.material-icons{
     transform: translateY(.25em);
     opacity: 0
   }
-}
-
-.post-block {
-  position: relative;
-  margin-bottom: 1rem;
-}
-
-.post-block--article{
-  padding: 1.5rem 2rem;
-  clear: both;
-}
-
-.post-block--title{
-  font-size: 2.25rem;
-}
-
-.container--main{
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-.tag-container{
-  display: flex;
-  align-items: center;
-}
-
-.post-block--label-container{
-  display: flex;
-  align-items: center;
-}
-
-.post-block--label-container i{
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.post-block--label-container .tag{
-  margin: 0 1rem 0 0.5rem;
-}
-
-.post-block--label-container .tagged-in{
-  padding-right: 1rem;
 }
