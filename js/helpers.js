@@ -1,8 +1,14 @@
 /**
+ * @name helpers.js
+ * @author Stanley Clark <me@stanrogo.com>
+ * @version 1.0.0
+ *
  * Class providing helper functions usable everywhere
  */
 
-class Helpers{
+import marked from '../vendor/marked.js';
+
+export default class Helpers{
 
     /**
      * Translates a date to Day Month format
@@ -19,7 +25,7 @@ class Helpers{
         return `${weekDay}, ${month} ${dateNumber}, ${year}`;
     }
 
-    static constructRenderer(){
+    static get customMarkedInstance(){
 
         const renderer = new marked.Renderer();
 
@@ -32,7 +38,43 @@ class Helpers{
             return '<h' + newLevel + ' id="' + escapedText + '">' + text + '</h' + newLevel + '>';
         };
 
-        return renderer;
+        marked.setOptions({
+            renderer
+        });
+
+        return marked;
+    }
+
+    /**
+     * Gets the locale of the user, based on the local storage
+     */
+
+    static get locale(){
+
+        const storedLocale = localStorage.getItem(`locale`);
+
+        if(typeof storedLocale === `undefined` || typeof APIRequest.localeTable[storedLocale] === `undefined`){
+
+            console.warn(`No valid locale detected:`, `reverting to United Kingdom`);
+            return APIRequest.defaultParameters.locale;
+        }
+        else{
+
+            return APIRequest.localeTable[storedLocale];
+        }
+    }
+
+    static set locale(localeName){
+
+        localStorage.setItem(`locale`, localeName);
+    }
+
+    static get localeTable(){
+
+        return {
+            german: `de`,
+            english: `en-GB`
+        }
     }
 
     static get months(){

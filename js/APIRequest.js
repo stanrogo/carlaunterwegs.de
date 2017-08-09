@@ -1,32 +1,24 @@
 /**
+ * @name APIRequest.js
+ * @author Stanley Clark <me@stanrogo.com>
+ * @version 1.0.0
+ *
  * Construct and execute a request based on defaults which can be overridden
  */
 
-class APIRequest{
+import Helpers from "./helpers.js";
+
+export default class APIRequest{
 
     constructor(data = {}){
 
-        this.endPointBase = data.endPointBase ||`https://cdn.contentful.com/spaces/`;
-        this.spaceID = data.spaceID || `zb623ajubmgz`;
-        this.accessToken = data.accessToken || `1d7129a51099773a878425f241574944d855cedde56d822194b76a4a0e2632cd`;
+        // Set the parameters needed to construct a request to the server
+        // I don't know why we would need to change these, but it helps to have these in here
 
-        const storedLocale = localStorage.getItem(`locale`);
-        if(typeof storedLocale !== `undefined`){
-
-            this.locale = this.localeTable[storedLocale] || this.localeTable.english;
-        }
-        else{
-
-            this.locale = this.localeTable.english;
-        }
-    }
-
-    get localeTable(){
-
-        return {
-            german: `de`,
-            english: `en-GB`
-        }
+        this.endPointBase = data.endPointBase || APIRequest.defaultParameters.endPointBase;
+        this.spaceID = data.spaceID || APIRequest.defaultParameters.spaceID;
+        this.accessToken = data.accessToken || APIRequest.defaultParameters.accessToken;
+        this.locale = data.locale || APIRequest.defaultParameters.locale;
     }
 
     /**
@@ -59,5 +51,15 @@ class APIRequest{
     constructURL(endPoint){
 
         return `${this.endPointBase}${this.spaceID}/${endPoint}?access_token=${this.accessToken}&locale=${this.locale}`;
+    }
+
+    static get defaultParameters(){
+
+        return {
+            endPointBase: `https://cdn.contentful.com/spaces/`,
+            spaceID: `zb623ajubmgz`,
+            accessToken: `1d7129a51099773a878425f241574944d855cedde56d822194b76a4a0e2632cd`,
+            locale: Helpers.localeTable.english
+        }
     }
 }

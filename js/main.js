@@ -1,57 +1,23 @@
 /**
- * This class takes advantage of all other classes to control what happens on the page
+ * @name main.js
+ * @author Stanley Clark <me@stanrogo.com>
+ * @version 1.0.0
+ *
+ * This is the main file that initialises our application
+ *
+ * We collate all of the sections of our website that we want to use and execute their functionality
  */
 
-class Main{
+import PostsController from "./postsController.js";
+import LanguageSelection from "./languageSelection.js";
 
-    constructor(APIRequest, Post, Helpers){
+const carlaBlog = {};
 
-        this.APIRequest = APIRequest;
-        this.Post = Post;
-        this.Helpers = Helpers;
+// Render all posts
 
-        this.postsContainer = document.querySelector(`.js-posts-container`);
+carlaBlog.postsController = new PostsController();
+carlaBlog.postsController.renderAllPosts();
 
-        document.querySelectorAll(`.js-btn-language`).forEach(button => {
+// Enable language selection on the site
 
-            button.addEventListener(`click`, () => {this.selectLanguage(button)});
-        });
-    }
-
-    renderAllPosts(){
-
-        const posts = [];
-        const request = new this.APIRequest();
-        request.get('entries').then((data)=> {
-
-            data.items.forEach((post) => {
-
-                if(!this.Post.hasContent(post)){
-
-                    return;
-                }
-
-                const postInstance = new this.Post(this.Helpers, post);
-                posts.push(postInstance);
-            });
-
-            posts.sort((a, b) => {
-
-                return a.timestamp < b.timestamp;
-            });
-
-            posts.forEach((post) => {
-
-                const renderedPost = post.createNewPost();
-                this.postsContainer.appendChild(renderedPost);
-            });
-        });
-    }
-
-    selectLanguage(button){
-
-        localStorage.setItem('locale', button.dataset.locale);
-        window.location.reload();
-    }
-}
-
+carlaBlog.languageSelection = new LanguageSelection();

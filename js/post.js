@@ -1,15 +1,19 @@
 /**
+ * @name post.js
+ * @author Stanley Clark <me@stanrogo.com>
+ * @version 1.0.0
+ *
  * Create a post object that can render itself to the DOM
  */
 
-class Post{
+import Helpers from './helpers.js';
 
-    constructor(Helpers, data){
+export default class Post{
 
-        const renderer = Helpers.constructRenderer();
+    constructor(data){
 
         this.title = data.fields.title;
-        this.content = marked(data.fields.content, {renderer});
+        this.content = Helpers.customMarkedInstance(data.fields.content);
         this.date = new Date(data.fields.date);
         this.timestamp = this.date.getTime();
         this.simpleDate =  Helpers.dateToSimpleDate(this.date);

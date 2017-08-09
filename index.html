@@ -33,10 +33,6 @@
                     <i class="material-icons">dashboard</i>
                     <span class="light">Carla Unterwegs</span>
                 </a>
-                <ul id="nav-mobile" class="left hide-on-med-and-down">
-                    <li><a href="#" class="light">Photos</a></li>
-                    <li><a href="#" class="light">About</a></li>
-                </ul>
 
                 <ul class="right hide-on-med-and-down">
                     <li><a href="#" class="light js-btn-language" data-locale="english">English</a></li>
@@ -84,12 +80,18 @@
 
 <!------------------ Scripts -------------------->
 
-<script src="vendor/marked.js"></script>
-<script src="js/post.js"></script>
-<script src="js/helpers.js"></script>
-<script src="js/APIRequest.js"></script>
-<script src="js/main.js"></script>
-<script src="js/bootstrap.js"></script>
+<script src="vendor/system.js"></script>
+<script>
+    SystemJS.config({
+        map: {
+            'plugin-babel': '../vendor/plugin-babel-master/plugin-babel.js',
+            'systemjs-babel-build': '../vendor/plugin-babel-master/systemjs-babel-browser.js'
+        },
+        transpiler: 'plugin-babel',
+        baseURL: 'js'
+    });
+    SystemJS.import('main.js');
+</script>
 
 </body>
 </html>
