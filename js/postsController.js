@@ -38,8 +38,11 @@ export default class PostsController{
 
                 posts.forEach((post) => {
 
-                    const renderedPost = post.createNewPost();
-                    this.postsContainer.innerHTML += renderedPost;
+                    post.createNewPost().then((renderedPost) => {
+
+                        this.postsContainer.innerHTML += renderedPost;
+                    });
+
                 });
 
                 resolve();

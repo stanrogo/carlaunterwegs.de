@@ -8,6 +8,7 @@
 
 import Helpers from './helpers.js';
 import HandleBars from '../vendor/handlebars-v4.0.10.js';
+import templateRetriever from './templateRetriever.js';
 
 export default class Post{
 
@@ -19,24 +20,29 @@ export default class Post{
         this.date = new Date(data.fields.date);
         this.timestamp = this.date.getTime();
         this.simpleDate =  Helpers.dateToSimpleDate(this.date);
-        this.template = document.getElementById('post-template').innerHTML;
     }
 
     /**
      * Fill out the post template and return as HTML
      *
-     * @return {String} - the HTML that should be appened to the DOM
+     * @return {Promise} - a promise resolving the HTML that should be appended to the DOM
      */
 
     createNewPost(){
 
-        const hbTemplate = HandleBars.compile(this.template);
+        return new Promise((resolve, reject) => {
 
-        return hbTemplate({
-            title: this.title,
-            content: this.content,
-            date: this.simpleDate,
-            tags: this.tags
+            templateRetriever.retrieve(`post`).then((template) => {
+
+                const hbTemplate = HandleBars.compile(template);
+
+                resolve(hbTemplate({
+                    title: this.title,
+                    content: this.content,
+                    date: this.simpleDate,
+                    tags: this.tags
+                }));
+            });
         });
     }
 

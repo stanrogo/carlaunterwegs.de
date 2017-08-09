@@ -1,0 +1,29 @@
+<div class="col s12 post-block">
+    <div class="date-container black">
+        <i class="material-icons white-text">date_range</i>
+        <span class="date-container--date white-text">{{date}}</span>
+    </div>
+    <article class="post-block--article z-depth-1 white">
+
+        <h1 class="post-block--title">{{title}}</h1>
+
+        <hr/>
+
+        <div class="post-block--label-container">
+            <span class="tagged-in">Tagged in: </span>
+
+            {{#each tags}}
+
+                <span class="tag-container">
+                    <i class="material-icons">label</i>
+                    <span class="tag">{{this}}</span>
+                </span>
+
+            {{/each}}
+        </div>
+
+        <hr/>
+
+        <div class="post-block--content light">{{{content}}}</div>
+    </article>
+</div>
