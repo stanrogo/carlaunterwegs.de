@@ -1,0 +1,14 @@
+.about-me--container{
+    position: relative;
+}
+
+.about-me--heading{
+    font-size: 1.5rem;
+    padding: 1rem;
+    margin: 0;
+    font-weight: 300;
+}
+
+.about-me--text{
+    padding: 1rem;
+}

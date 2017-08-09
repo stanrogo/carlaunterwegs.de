@@ -6,9 +6,13 @@ class Post{
 
     constructor(Helpers, data){
 
-        this.title = data.title;
-        this.content = marked(data.content);
-        this.date =  Helpers.dateToSimpleDate(data.date);
+        const renderer = Helpers.constructRenderer();
+
+        this.title = data.fields.title;
+        this.content = marked(data.fields.content, {renderer});
+        this.date = new Date(data.fields.date);
+        this.timestamp = this.date.getTime();
+        this.simpleDate =  Helpers.dateToSimpleDate(this.date);
     }
 
     /**
@@ -18,10 +22,11 @@ class Post{
     createNewPost(){
 
         const html = `
-            <div class="ribbon-container">
-                <span>${this.date}</span>
+            <div class="date-container black">
+                <i class="material-icons white-text">date_range</i>
+                <span class="date-container--date white-text">${this.simpleDate}</span>
             </div>
-            <article class="post-block--article">
+            <article class="post-block--article z-depth-1 white">
                 
                 <h1 class="post-block--title">${this.title}</h1>
                 <div class="post-block--content light">${this.content}</div>
@@ -29,9 +34,14 @@ class Post{
         `;
 
         const postBlock = document.createElement('div');
-        postBlock.className = `col s12 m8 offset-m2 z-depth-2 post-block`;
+        postBlock.className = `col s12 post-block`;
         postBlock.innerHTML = html;
 
         return postBlock;
+    }
+
+    static hasContent(post){
+
+        return !!post.fields.content;
     }
 }

@@ -1,53 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Carla Unterwegs</title>
 
-    <!-- CSS  -->
+    <!---------------- CSS ------------------>
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="vendor/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="css/main.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="css/ribbon.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/about.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
 
-<div id="index-banner">
+<!----------------- Header ------------------>
+
+<header id="site-header">
+
     <div class="image-wrapper"><img src="images/background1.jpg"></div>
+
     <div class="container container--header">
         <div class="row center">
-            <h1 class="header center teal-text text-lighten-2">Carla Unterwegs</h1>
-            <h5 class="header col s12 light white-text">A blog about my travels through the world</h5>
+            <h5 class="header col s12 light white-text">Travels, experiences, thoughts and more...</h5>
         </div>
     </div>
 
-</div>
+    <div class="container">
+        <nav class="nav-wrapper transparent z-depth-0">
+                <a href="#" class="brand-logo left">
+                    <i class="material-icons">dashboard</i>
+                    <span class="light">Carla Unterwegs</span>
+                </a>
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <li><a href="#" class="light">Photos</a></li>
+                    <li><a href="#" class="light">About</a></li>
+                </ul>
 
-<div class="container">
-    <div class="row section js-posts-container">
-       <!-- Dynamically generated content inserted here -->
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#" class="light js-btn-language" data-locale="english">English</a></li>
+                    <li><a href="#" class="light js-btn-language" data-locale="german">Deutsch</a></li>
+                </ul>
+        </nav>
     </div>
-</div>
+</header>
 
-<footer class="page-footer teal">
+<!----------------- Main Content ------------------>
+
+<main class="container container--main">
+    <div class="row">
+        <div class="col s12 m9">
+            <div class="row section js-posts-container">
+                <!-- Dynamically generated content inserted here -->
+            </div>
+        </div>
+
+        <!--------------- About Section ------------->
+
+        <div class="col s12 m3">
+            <div class="about-me--container white z-depth-1">
+                <h1 class="about-me--heading teal white-text">About me</h1>
+                <div class="about-me--text">I'm Carla Demmering, This is being written by Stanley Clark. I'm going to go abroad on my exchange semester soon!</div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!----------------- Page Footer ------------------>
+
+<footer class="page-footer white">
     <div class="container">
         <div class="row">
-            <div class="col s12">
-                Made by&nbsp;<a class="brown-text text-lighten-3" href="https://stanrogo.com" target="_blank">stanrogo</a>
+            <div class="col s12 page-footer-column">
+                <i class="material-icons black-text">dashboard</i>
+                <span class="black-text">
+                    Made by&nbsp;<a class="brown-text text-lighten-3" href="https://stanrogo.com" target="_blank">stanrogo</a>
+                </span>
             </div>
         </div>
     </div>
 </footer>
 
+<!------------------ Scripts -------------------->
 
-<!--  Scripts-->
 <script src="vendor/marked.js"></script>
 <script src="js/post.js"></script>
 <script src="js/helpers.js"></script>
 <script src="js/APIRequest.js"></script>
 <script src="js/main.js"></script>
 <script src="js/bootstrap.js"></script>
+
 </body>
 </html>

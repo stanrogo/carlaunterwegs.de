@@ -9,6 +9,24 @@ class APIRequest{
         this.endPointBase = data.endPointBase ||`https://cdn.contentful.com/spaces/`;
         this.spaceID = data.spaceID || `zb623ajubmgz`;
         this.accessToken = data.accessToken || `1d7129a51099773a878425f241574944d855cedde56d822194b76a4a0e2632cd`;
+
+        const storedLocale = localStorage.getItem(`locale`);
+        if(typeof storedLocale !== `undefined`){
+
+            this.locale = this.localeTable[storedLocale] || this.localeTable.english;
+        }
+        else{
+
+            this.locale = this.localeTable.english;
+        }
+    }
+
+    get localeTable(){
+
+        return {
+            german: `de`,
+            english: `en-GB`
+        }
     }
 
     /**
@@ -40,6 +58,6 @@ class APIRequest{
 
     constructURL(endPoint){
 
-        return `${this.endPointBase}${this.spaceID}/${endPoint}?access_token=${this.accessToken}`;
+        return `${this.endPointBase}${this.spaceID}/${endPoint}?access_token=${this.accessToken}&locale=${this.locale}`;
     }
 }

@@ -6,17 +6,63 @@ class Helpers{
 
     /**
      * Translates a date to Day Month format
-     * @param {String} date
+     * @param {Date} date
      */
 
     static dateToSimpleDate(date){
 
-        const dateInstance = new Date(date);
-        return `${dateInstance.getDate()} ${Helpers.months[dateInstance.getMonth()]}`;
+        const weekDay = Helpers.weekDay[date.getDay()];
+        const month = Helpers.months[date.getMonth()];
+        const dateNumber = date.getDate();
+        const year = date.getFullYear();
+
+        return `${weekDay}, ${month} ${dateNumber}, ${year}`;
+    }
+
+    static constructRenderer(){
+
+        const renderer = new marked.Renderer();
+
+        renderer.heading = function (text, level) {
+
+            const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
+
+            const newLevel = level + 1;
+
+            return '<h' + newLevel + ' id="' + escapedText + '">' + text + '</h' + newLevel + '>';
+        };
+
+        return renderer;
     }
 
     static get months(){
 
-        return [`Jan`, `Feb`, `Mar`, `Apr`, `May`, `Jun`, `Jul`, `Aug`, `Sep`, `Oct`, `Nov`, 'Dec'];
+        return [
+            `January`,
+            `February`,
+            `March`,
+            `April`,
+            `May`,
+            `June`,
+            `July`,
+            `August`,
+            `September`,
+            `October`,
+            `November`,
+            `December`
+        ];
+    }
+
+    static get weekDay(){
+
+        return [
+            `Monday`,
+            `Tuesday`,
+            `Wednesday`,
+            `Thursday`,
+            `Friday`,
+            `Saturday`,
+            `Sunday`
+        ];
     }
 }
