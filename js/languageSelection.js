@@ -17,7 +17,7 @@ export default class LanguageSelection{
         this.languageButtons.forEach((button) => {
 
             const language = button.dataset.locale;
-            button.addEventListener(`click`, () => {this.selectLanguage(language)});
+            button.addEventListener(`click`, () => {LanguageSelection.selectLanguage(language)});
         });
     }
 

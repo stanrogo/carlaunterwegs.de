@@ -18,7 +18,10 @@ export default class APIRequest{
         this.endPointBase = data.endPointBase || APIRequest.defaultParameters.endPointBase;
         this.spaceID = data.spaceID || APIRequest.defaultParameters.spaceID;
         this.accessToken = data.accessToken || APIRequest.defaultParameters.accessToken;
-        this.locale = data.locale || APIRequest.defaultParameters.locale;
+
+        // The locale for the request is retrieved via the helpers only
+
+        this.locale = Helpers.locale || Helpers.localeTable[APIRequest.defaultParameters.locale];
     }
 
     /**
@@ -59,7 +62,7 @@ export default class APIRequest{
             endPointBase: `https://cdn.contentful.com/spaces/`,
             spaceID: `zb623ajubmgz`,
             accessToken: `1d7129a51099773a878425f241574944d855cedde56d822194b76a4a0e2632cd`,
-            locale: Helpers.localeTable.english
+            locale: 'english'
         }
     }
 }

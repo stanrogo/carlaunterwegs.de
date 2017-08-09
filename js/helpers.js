@@ -53,14 +53,14 @@ export default class Helpers{
 
         const storedLocale = localStorage.getItem(`locale`);
 
-        if(typeof storedLocale === `undefined` || typeof APIRequest.localeTable[storedLocale] === `undefined`){
+        if(typeof storedLocale === `undefined` || typeof Helpers.localeTable[storedLocale] === `undefined`){
 
-            console.warn(`No valid locale detected:`, `reverting to United Kingdom`);
-            return APIRequest.defaultParameters.locale;
+            console.warn(`No valid locale detected`);
+            return null;
         }
         else{
 
-            return APIRequest.localeTable[storedLocale];
+            return Helpers.localeTable[storedLocale];
         }
     }
 
