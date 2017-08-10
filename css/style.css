@@ -9,11 +9,6 @@
   justify-content: center;
 }
 
-.container--main{
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
 /* Make all material icons circles */
 
 .material-icons{
@@ -57,7 +52,6 @@
 
 #site-header{
   position: relative;
-  overflow: hidden;
 }
 
 #site-header .header{
