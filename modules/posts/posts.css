@@ -21,33 +21,60 @@
     margin-bottom: 1rem;
 }
 
+#posts-container .post-block:last-child{
+    margin-bottom: 0;
+}
+
 #posts-container .post-block--article{
-    padding: 1.5rem 2rem;
+    padding: 1.5rem 1rem;
     clear: both;
 }
 
 #posts-container .post-block--article img{
-    margin-left: -2rem;
-    width: calc(100% + 4rem);
+    margin-left: -1rem;
+    width: calc(100% + 2rem);
 }
 
 #posts-container .post-block--title{
     font-size: 2.25rem;
 }
 
+#posts-container .post-block--article h2{
+    font-size: 2rem;
+}
+
+#posts-container .post-block--article h3{
+    font-size: 1.75rem;
+}
+
+#posts-container .post-block--article h4{
+    font-size: 1.5rem;
+}
+
+@media all and (min-width: 768px){
+
+    #posts-container .post-block--article{
+        padding: 1.5rem 2rem;
+    }
+
+    #posts-container .post-block--article img{
+        margin-left: -2rem;
+        width: calc(100% + 4rem);
+    }
+}
+
 /* ------ tag styling ----- */
 
 #posts-container .post-block--tagged-in{
-    padding-right: 1rem;
+    padding-right: 0.5rem;
 }
 
 #posts-container .post-block--tag-icon{
-    padding-left: 0;
-    padding-right: 0;
+    padding: 0;
 }
 
 #posts-container .post-block--tag-text{
-    margin: 0 1rem 0 0.5rem;
+    margin: 0 0.5rem 0 0.25rem;
 }
 
 
