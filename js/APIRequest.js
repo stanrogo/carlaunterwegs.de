@@ -6,7 +6,7 @@
  * Construct and execute a request based on defaults which can be overridden
  */
 
-import Helpers from "./helpers.js";
+import localisationHelper from './localisationHelper.js';
 
 class APIRequest{
 
@@ -20,19 +20,12 @@ class APIRequest{
 
         // The locale for the request is retrieved via the helpers only
 
-        this.locale = Helpers.locale || Helpers.localeTable[this._defaultParameters.locale];
+        this.locale = localisationHelper.locale;
 
         // Set the cached data and running requests
 
         this.data = {};
         this.runningRequests = {};
-    }
-
-    setCustomOptions(data){
-
-        this.endPointBase = data.endPointBase || this._defaultParameters.endPointBase;
-        this.spaceID = data.spaceID || this._defaultParameters.spaceID;
-        this.accessToken = data.accessToken || this._defaultParameters.accessToken;
     }
 
     /**
@@ -64,6 +57,10 @@ class APIRequest{
     }
 
     _get(endPoint){
+
+        // Always check the locale before continuing to fetch data
+
+        this.locale = localisationHelper.locale;
 
         return new Promise((resolve, reject) => {
 
@@ -99,6 +96,4 @@ class APIRequest{
     }
 }
 
-let apiRequest = new APIRequest();
-
-export default apiRequest;
+export default new APIRequest();

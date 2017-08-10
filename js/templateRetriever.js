@@ -50,7 +50,7 @@ class TemplateRetriever{
                 }
             };
 
-            xhr.open(`GET`, `modules/${templateName}/${templateName}.hbs`, true);
+            xhr.open(`GET`, `/modules/${templateName}/${templateName}.hbs`, true);
             xhr.send();
         });
     }

@@ -6,7 +6,9 @@
  * The routing for our website
  */
 
-export default class Router{
+import localisationHelper from './localisationHelper.js';
+
+class Router{
 
     constructor(options){
 
@@ -15,7 +17,15 @@ export default class Router{
         this.root = '/';
 
         if(options) this.config(options);
+
+        this.setLanguageFromURL();
     }
+
+    /**
+     * Additional configuration options
+     * @param options
+     * @returns {Router}
+     */
 
     config(options){
 
@@ -24,6 +34,61 @@ export default class Router{
 
         return this;
     }
+
+    /**
+     * Use the path and localisation helper to set the correct site root based on the locale
+     */
+
+    setLanguageFromURL(){
+
+        const paths = location.pathname.split('/');
+
+        if(paths.length > 2){
+
+            const locale = paths[1];
+
+            const validLocale = localisationHelper.checkValidLocale(locale);
+
+            if(validLocale === true){
+
+                this.root = `/${locale}/`;
+                localisationHelper.locale = locale;
+            }
+        }
+        else{
+
+            this.root = `/${localisationHelper.locale}/`;
+        }
+    }
+
+    /**
+     * Retrieve the current path, excluding the root
+     */
+
+    getCurrentPath(){
+
+        let path = '';
+
+        if(this.mode === 'history'){
+
+            path = decodeURI(location.pathname + location.search);
+            path = path.replace(/\?(.*)$/, '');
+            path = this.root !== '/' ? path.replace(this.root, '') : path;
+        }
+        else{
+
+            const match = window.location.href.match(/#(.*)$/);
+            path = match ? match[1] : '';
+        }
+
+        return path;
+    }
+
+    /**
+     *
+     *
+     * @returns {*}
+     */
 
     getFragment(){
 
@@ -136,3 +201,5 @@ export default class Router{
         return this;
     }
 }
+
+export default new Router({mode: 'history'});

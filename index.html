@@ -8,12 +8,12 @@
     <!---------------- CSS ------------------>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="vendor/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="css/main.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="modules/about/about.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="modules/posts/posts.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="css/spinner.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="/vendor/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="/css/main.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="/modules/about/about.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="/modules/posts/posts.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="/css/spinner.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
 
@@ -21,7 +21,7 @@
 
 <header id="site-header">
 
-    <div class="image-wrapper"><img src="images/background1.jpg"></div>
+    <div class="image-wrapper"><img src="/images/background1.jpg"></div>
 
     <div class="container container--header">
         <div class="row center">
@@ -37,8 +37,8 @@
                 </a>
 
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="#" class="light js-btn-language" data-locale="english">English</a></li>
-                    <li><a href="#" class="light js-btn-language" data-locale="german">Deutsch</a></li>
+                    <li><a href="/en-GB/" class="light js-btn-language" data-locale="english">English</a></li>
+                    <li><a href="/de/" class="light js-btn-language" data-locale="german">Deutsch</a></li>
                 </ul>
         </nav>
     </div>
@@ -83,7 +83,7 @@
 
 <!------------------ Scripts -------------------->
 
-<script src="vendor/system.js"></script>
+<script src="/vendor/system.js"></script>
 <script>
     SystemJS.config({
         map: {
@@ -91,7 +91,7 @@
             'systemjs-babel-build': '../vendor/plugin-babel-master/systemjs-babel-browser.js'
         },
         transpiler: 'plugin-babel',
-        baseURL: 'js'
+        baseURL: '/js'
     });
     SystemJS.import('main.js');
 </script>

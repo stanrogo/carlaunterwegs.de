@@ -46,38 +46,6 @@ export default class Helpers{
         return marked;
     }
 
-    /**
-     * Gets the locale of the user, based on the local storage
-     */
-
-    static get locale(){
-
-        const storedLocale = localStorage.getItem(`locale`);
-
-        if(typeof storedLocale === `undefined` || typeof Helpers.localeTable[storedLocale] === `undefined`){
-
-            console.warn(`No valid locale detected`);
-            return null;
-        }
-        else{
-
-            return Helpers.localeTable[storedLocale];
-        }
-    }
-
-    static set locale(localeName){
-
-        localStorage.setItem(`locale`, localeName);
-    }
-
-    static get localeTable(){
-
-        return {
-            german: `de`,
-            english: `en-GB`
-        }
-    }
-
     static get months(){
 
         return [
