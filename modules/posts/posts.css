@@ -26,6 +26,11 @@
     clear: both;
 }
 
+#posts-container .post-block--article img{
+    margin-left: -2rem;
+    width: calc(100% + 4rem);
+}
+
 #posts-container .post-block--title{
     font-size: 2.25rem;
 }

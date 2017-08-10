@@ -1,12 +1,7 @@
 /* Custom Stylesheet */
 
-/* All containers are now flex containers */
-
-.container{
-  display: flex;
-}
-
 .container--header{
+  display: flex;
   z-index: 25;
   position: relative;
   height: 200px;
