@@ -1,0 +1,45 @@
+body{
+    background-color: white;
+}
+
+.cartoon-image{
+    height: calc(100vh - 64px - 82px);
+    margin: 0 0 0 auto;
+    display: block;
+    position: absolute;
+    right: 0;
+}
+
+.main-message{
+    position: absolute;
+    left: 1.5rem;
+    top: 5rem;
+    width: 56%;
+}
+
+.error-call-out{
+    font-size: 2rem;
+}
+
+.page-footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+@media all and (min-width: 768px){
+    .cartoon-image{
+        position: relative;
+    }
+
+    .error-call-out{
+        font-size: 4.2rem;
+    }
+
+    .main-message {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+}

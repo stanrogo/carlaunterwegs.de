@@ -1,5 +1,18 @@
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule "^en-GB/$"  /index.html [L]
-RewriteRule "^de/$"  /index.html [L]
+
+RewriteRule ^/$  /en-GB/ [R=301,L]
+
+RewriteRule ^en-GB(/?)$ /index.html [L]
+RewriteRule ^de(/?)$  /index.html [L]
+
+RewriteRule ^de/error/$  /error/index.html [L]
+RewriteRule ^en-GB/error/$  /error/index.html [L]
+
+RewriteRule ^de/(.*)$  /de/error/ [R]
+RewriteRule ^en-GB/(.*)$  /en-GB/error/ [R]
+
+RewriteCond %{REQUEST_URI} !^(/error/.*)|(/css/.*)|(/fonts/.*)|(/images/.*)|(/js/.*)|(/modules/.*)|(/vendor/.*)|(/index.html)$
+RewriteCond %{HTTP_HOST} ^carlaunterwegs\.com
+RewriteRule (.*)  /en-GB/error/ [R]

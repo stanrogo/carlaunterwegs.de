@@ -20,7 +20,7 @@ carlaBlog.renderPromises = [];
 router.navigate();
 
 router
-    .add(/about/, function() {
+    .add(/error/, function() {
 
     })
     .add(/products\/(.*)\/edit\/(.*)/, function() {
