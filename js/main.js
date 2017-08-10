@@ -16,21 +16,7 @@ import header from './header.js';
 const carlaBlog = {};
 carlaBlog.renderPromises = [];
 
-// Router set up
-
-router.navigate();
-
-router
-    .add(/error/, function() {
-
-    })
-    .add(/products\/(.*)\/edit\/(.*)/, function() {
-
-    })
-    .add(function() {
-
-    })
-    .check('/products/12/edit/22').listen();
+// Initialise header functionality
 
 header.init();
 

@@ -64,29 +64,6 @@ class Router{
     }
 
     /**
-     * Retrieve the current path, excluding the root
-     */
-
-    getCurrentPath(){
-
-        let path = '';
-
-        if(this.mode === 'history'){
-
-            path = decodeURI(location.pathname + location.search);
-            path = path.replace(/\?(.*)$/, '');
-            path = this.root !== '/' ? path.replace(this.root, '') : path;
-        }
-        else{
-
-            const match = window.location.href.match(/#(.*)$/);
-            path = match ? match[1] : '';
-        }
-
-        return path;
-    }
-
-    /**
      *
      *
      * @returns {*}
