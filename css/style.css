@@ -64,6 +64,20 @@
   overflow: hidden;
 }
 
+.language-en-GB #site-header .btn-english, .language-de #site-header .btn-german{
+  position: relative;
+}
+
+.language-en-GB #site-header .btn-english:before, .language-de #site-header .btn-german:before{
+  content: '';
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 5px;
+  background: teal;
+}
+
 nav .brand-logo{
   position: relative;
   display: flex;

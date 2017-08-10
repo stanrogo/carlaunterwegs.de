@@ -59,6 +59,8 @@ class Router{
 
             this.root = `/${localisationHelper.locale}/`;
         }
+
+        document.getElementsByTagName('body')[0].classList.add(`language-${localisationHelper.locale}`);
     }
 
     /**
