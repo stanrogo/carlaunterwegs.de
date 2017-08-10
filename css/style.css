@@ -58,6 +58,18 @@
   margin-top: 3rem;
 }
 
+#site-header.fixed-nav {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  background-color: white;
+  top: 0;
+}
+
+#site-header.fixed-nav .nav-row{
+  margin-bottom: 0;
+}
+
 @media all and (min-width: 768px){
   .container--header{
     height: 200px;

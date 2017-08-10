@@ -11,6 +11,7 @@
 import router from './router.js';
 import Posts from "../modules/posts/posts.js";
 import About from '../modules/about/about.js';
+import header from './header.js';
 
 const carlaBlog = {};
 carlaBlog.renderPromises = [];
@@ -31,8 +32,7 @@ router
     })
     .check('/products/12/edit/22').listen();
 
-
-// Select a language based on the curent route
+header.init();
 
 // Render all posts
 
@@ -47,5 +47,3 @@ carlaBlog.renderPromises.push(carlaBlog.about.render());
 Promise.all(carlaBlog.renderPromises).then(() => {
     document.getElementById(`spinner-container`).style.display = `none`;
 });
-
-
