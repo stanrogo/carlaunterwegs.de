@@ -62,10 +62,6 @@
   .container--header{
     height: 200px;
   }
-
-  #site-header .header{
-    margin-top: 0.82rem;
-  }
 }
 
 .language-en-GB #site-header .btn-english, .language-de #site-header .btn-german{
