@@ -1,4 +1,5 @@
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule . index.html [L]
+RewriteRule "^en-GB/$"  /index.html [L]
+RewriteRule "^de/$"  /index.html [L]
