@@ -38,7 +38,7 @@ export default class Posts extends DataModule{
 
             genObject.Posts.push({
                 title: entry.fields.title,
-                content: entry.fields.content,
+                content:  Helpers.customMarkedInstance(entry.fields.content),
                 date: Helpers.dateToSimpleDate(date),
                 tags: entry.fields.tags
             });

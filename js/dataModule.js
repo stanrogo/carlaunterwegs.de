@@ -29,10 +29,7 @@ export default class DataModule{
 
                 // Filter the entries on only the current content type
 
-                clonedEntries.items.forEach((entry, index) => {
-
-                    if(this._dataInvalid(entry)) clonedEntries.items.splice(index, 1);
-                });
+                clonedEntries.items = clonedEntries.items.filter(entry => this._dataValid(entry));
 
                 // Sort the entries
 
@@ -62,7 +59,7 @@ export default class DataModule{
         return {};
     }
 
-    _dataInvalid(data){
+    _dataValid(data){
 
         const isCorrectContent = data.sys.contentType.sys.id === this.contentType;
         let hasRequiredField = false;
@@ -77,6 +74,6 @@ export default class DataModule{
                 break;
         }
 
-        return isCorrectContent === false || hasRequiredField === false;
+        return isCorrectContent && hasRequiredField;
     }
 }
