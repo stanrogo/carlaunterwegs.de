@@ -28,8 +28,8 @@
 }
 
 @media all and (min-width: 768px){
-    .container--header{
-        height: 200px;
+    #header .container--header{
+        height: 300px;
     }
 }
 
