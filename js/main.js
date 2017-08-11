@@ -31,11 +31,11 @@ carlaBlog.about = new About();
 carlaBlog.renderPromises.push(carlaBlog.about.render());
 
 Promise.all(carlaBlog.renderPromises).then(() => {
+
     document.getElementById(`spinner-container`).style.display = `none`;
 
-    window.requestAnimationFrame(() => {
+    window.setTimeout(() => {
 
         FB.XFBML.parse();
-    });
-
+    }, 100);
 });
