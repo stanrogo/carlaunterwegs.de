@@ -32,4 +32,10 @@ carlaBlog.renderPromises.push(carlaBlog.about.render());
 
 Promise.all(carlaBlog.renderPromises).then(() => {
     document.getElementById(`spinner-container`).style.display = `none`;
+
+    window.requestAnimationFrame(() => {
+
+        FB.XFBML.parse();
+    });
+
 });

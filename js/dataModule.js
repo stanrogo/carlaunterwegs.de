@@ -44,9 +44,15 @@ export default class DataModule{
                     this.container.innerHTML = hbTemplate(generatedObject);
                 });
 
+                this._finalise();
+
                 resolve();
             });
         });
+    }
+
+    _finalise(){
+
     }
 
     _sortEntries(a, b){

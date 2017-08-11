@@ -66,7 +66,7 @@ const header = {
 
                 this.container.classList.add(`fixed-nav`);
                 this.container.style.top = `-${this.coverHeight - this.navContainerHeight}px`;
-                this.body.style.marginTop = `calc(${this.coverHeight}px + 1rem)`;
+                this.body.style.marginTop = `${this.coverHeight + 16}px`;
             }
         }
 

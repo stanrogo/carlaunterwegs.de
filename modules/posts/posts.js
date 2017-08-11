@@ -40,11 +40,16 @@ export default class Posts extends DataModule{
                 title: entry.fields.title,
                 content:  Helpers.customMarkedInstance(entry.fields.content),
                 date: Helpers.dateToSimpleDate(date),
-                tags: entry.fields.tags
+                tags: entry.fields.tags,
+                commentsLocation: window.location + `#` + entry.fields.title.toLowerCase().replace(` `,`-`)
             });
         });
 
         return genObject;
+    }
+
+    _finalise(){
+
     }
 }
 
