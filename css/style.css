@@ -1,14 +1,3 @@
-/* Custom Stylesheet */
-
-.container--header{
-  display: flex;
-  z-index: 25;
-  position: relative;
-  height: 100px;
-  align-items: center;
-  justify-content: center;
-}
-
 /* Make all material icons circles */
 
 .material-icons{
@@ -47,59 +36,7 @@
   flex-wrap: wrap;
 }
 
-
-/* TODO: other shit */
-
-#site-header{
-  position: relative;
-}
-
-#site-header .header{
-  margin-top: 3rem;
-}
-
-#site-header.fixed-nav {
-  position: fixed;
-  width: 100%;
-  z-index: 100;
-  background-color: white;
-  top: 0;
-}
-
-#site-header.fixed-nav .nav-row{
-  margin-bottom: 0;
-}
-
-@media all and (min-width: 768px){
-  .container--header{
-    height: 200px;
-  }
-}
-
-.language-en-GB #site-header .btn-english, .language-de #site-header .btn-german{
-  position: relative;
-}
-
-.language-en-GB #site-header .btn-english:before, .language-de #site-header .btn-german:before{
-  content: '';
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 5px;
-  background: teal;
-}
-
-nav .brand-logo{
-  position: relative;
-  display: flex;
-  align-items: center;
-  margin-right: 2rem;
-}
-
-nav .brand-logo i.material-icons{
-  padding: 0;
-}
+/* Footer styling */
 
 .page-footer{
   padding: 20px 0;
@@ -112,15 +49,4 @@ nav .brand-logo i.material-icons{
 .page-footer-column{
   display: flex;
   align-items: center;
-}
-
-.header{
-  animation: .5s .25s fade backwards ease-out;
-}
-
-@keyframes fade {
-  from {
-    transform: translateY(.25em);
-    opacity: 0
-  }
 }

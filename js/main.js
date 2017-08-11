@@ -11,7 +11,7 @@
 import router from './router.js';
 import Posts from "../modules/posts/posts.js";
 import About from '../modules/about/about.js';
-import header from './header.js';
+import header from '../modules/header/header.js';
 
 const carlaBlog = {};
 carlaBlog.renderPromises = [];
