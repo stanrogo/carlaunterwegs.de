@@ -1,4 +1,4 @@
-<header id="header">
+<header id="header" class="js-header">
 
     <div class="image-wrapper js-header--cover">
         <img src="{{ URL::asset('images/background1.jpg')}}">

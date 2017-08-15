@@ -7,8 +7,8 @@ return [
     'debug' => env('APP_DEBUG', true),
     'url' => env('APP_URL', 'http://www.dev.carlaunterwegs.com/blog/public'),
     'timezone' => 'UTC',
-    'locale' => 'en',
-    'fallback_locale' => 'en',
+    'locale' =>  'de',
+    'fallback_locale' => 'en-GB',
     'key' => env('APP_KEY'),
     'cipher' => 'AES-256-CBC',
     'log' => env('APP_LOG', 'single'),
@@ -62,7 +62,7 @@ return [
 
         Contentful\Laravel\ContentfulServiceProvider::class,
         GrahamCampbell\Markdown\MarkdownServiceProvider::class,
-
+        Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
     ],
 
     'aliases' => [
@@ -101,6 +101,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
     ],
 
 ];

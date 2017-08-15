@@ -22,13 +22,7 @@
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="{{ URL::asset('css/materialize.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
-
-        <link href="{{ URL::asset('css/main.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <link href="{{ URL::asset('css/style.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <link href="{{ URL::asset('css/about.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <link href="{{ URL::asset('css/posts.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <link href="{{ URL::asset('css/header.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <link href="{{ URL::asset('css/spinner.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="{{ URL::asset('css/app.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
     </head>
     <body>
         <div id="fb-root"></div>
@@ -36,48 +30,43 @@
                 var js, fjs = d.getElementsByTagName(s)[0];
                 if (d.getElementById(id)) return;
                 js = d.createElement(s); js.id = id;
-                var locale = window.location.href.indexOf('/de/') !== -1 ? 'de_DE' : 'en_GB';
+                var locale = {{LaravelLocalization::getCurrentLocale()}} == 'de' ? 'de_DE' : 'en_GB';
                 js.src = `//connect.facebook.net/${locale}/sdk.js#xfbml=1&version=v2.10&appId=299472643852520`;
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));</script>
 
-        <!----------------- Header ------------------>
+        <div id="app" class="language-{{LaravelLocalization::getCurrentLocale()}}">
+            @include('header');
 
-        @include('header');
-
-        <!----------------- Main Content ------------------>
-
-        <main class="container container--main">
-            <div class="row">
-                <div class="col s12 l9">
-
-                    @include('posts')
-
-                </div>
-
-                <!--------------- About Section ------------->
-
-                <div class="col s12 l3">
-
-                    @include('about')
-
-                </div>
-            </div>
-        </main>
-
-        <!----------------- Page Footer ------------------>
-
-        <footer class="page-footer white">
-            <div class="container">
+            <main class="container container--main">
                 <div class="row">
-                    <div class="col s12 page-footer-column">
-                        <i class="material-icons black-text">dashboard</i>
-                        <span class="black-text">
-                        Made by&nbsp;<a class="brown-text text-lighten-3" href="https://stanrogo.com" target="_blank">stanrogo</a>
-                    </span>
+                    <div class="col s12 l9">
+
+                        @include('posts')
+
+                    </div>
+                    <div class="col s12 l3">
+
+                        @include('about')
+
                     </div>
                 </div>
-            </div>
-        </footer>
+            </main>
+
+            <footer class="page-footer white">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s12 page-footer-column">
+                            <i class="material-icons black-text">dashboard</i>
+                            <span class="black-text">
+                        Made by&nbsp;<a class="brown-text text-lighten-3" href="https://stanrogo.com" target="_blank">stanrogo</a>
+                    </span>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+        <script src="{{ URL::asset('js/app.js')}}" type="application/javascript"></script>
     </body>
 </html>

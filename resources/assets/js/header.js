@@ -6,8 +6,6 @@
  * This little script simply allows us to have a fancy header with fading opacity
  */
 
-import templateRetriever from '../../../js/templateRetriever.js';
-
 const header = {
 
     body: null,
@@ -23,13 +21,8 @@ const header = {
     init(){
 
         const wrapper = document.getElementsByClassName(`js-header`)[0];
-
-        templateRetriever.retrieve(`header`).then((template) => {
-
-            wrapper.innerHTML = template;
-            this.setProperties();
-            document.addEventListener(`scroll`, () => this.onScroll());
-        });
+        this.setProperties();
+        document.addEventListener(`scroll`, () => this.onScroll());
     },
 
     setProperties(){

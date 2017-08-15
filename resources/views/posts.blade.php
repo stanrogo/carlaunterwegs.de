@@ -5,7 +5,7 @@
         <div class="col s12 post-block">
             <div class="date-container black">
                 <i class="material-icons white-text">date_range</i>
-                <span class="date-container--date white-text">{{$post->getDate()->format('Y-m-d')}}</span>
+                <span class="date-container--date white-text">{{strftime("%A, %B %d, %Y", $post->getDate()->getTimestamp())}}</span>
             </div>
             <article class="post-block--article white">
 
@@ -31,6 +31,12 @@
                 <div class="post-block--content light">{!! \GrahamCampbell\Markdown\Facades\Markdown::convertToHtml($post->getContent()) !!}</div>
             </article>
 
+            <div class="fb-comments"
+                 data-href="https://developers.facebook.com/docs/plugins/comments#{{str_replace(' ', '-', $post->getTitle())}}"
+                 data-numposts="5"
+                 data-width="100%"
+            >
+            </div>
         </div>
 
     @endforeach

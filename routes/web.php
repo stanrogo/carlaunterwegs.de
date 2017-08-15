@@ -11,13 +11,22 @@
 |
 */
 
-Route::get('/', function (\App\Http\Controllers\BlogController $controller) {
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
-    return view(
-        'base',
-        [
-            'posts' => $controller->showPost(),
-            'about' => $controller->showAbout()
-        ]
-    );
+Route::group([
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+], function()
+{
+    /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
+    Route::get('/', function(\App\Http\Controllers\BlogController $controller)
+    {
+        return view(
+            'base',
+            [
+                'posts' => $controller->showPost(),
+                'about' => $controller->showAbout()
+            ]
+        );
+    });
 });
