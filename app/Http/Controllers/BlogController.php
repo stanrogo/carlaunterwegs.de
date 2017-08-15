@@ -22,6 +22,15 @@ class BlogController extends Controller{
         setlocale(LC_TIME, $this->locale);
     }
 
+    private static function _sortByDate($a, $b){
+
+        if($a->getDate()->getTimestamp() === $b->getDate()->getTimestamp()) {
+
+            return 0;
+        }
+        return ($a->getDate()->getTimestamp() > $b->getDate()->getTimestamp()) ? -1 : 1;
+    }
+
     public function showPost(){
 
         $query = (new Query())->setContentType('post')->setLocale($this->locale);
@@ -32,7 +41,11 @@ class BlogController extends Controller{
             abort(404);
         }
 
-        return $posts->getItems();
+        $items = $posts->getItems();
+
+        uasort($items, Array($this, '_sortByDate'));
+
+        return $items;
     }
 
     public function showAbout(){
