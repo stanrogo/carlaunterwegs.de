@@ -1,23 +1,4 @@
-RewriteEngine on
-RewriteBase /
-
-# Display the error documents
-
-ErrorDocument 404 http://%{HTTP_HOST}/en-GB/error/
-RewriteRule ^de/error/$  /error/index.html [L]
-RewriteRule ^en-GB/error/$  /error/index.html [L]
-
-# If there is nothing in the root then we redirect
-RewriteCond %{REQUEST_URI}  "^/$"
-RewriteRule ^(.*) http://%{HTTP_HOST}/en-GB/ [L]
-
-# If matches local directly, show the index page
-
-RewriteRule ^en-GB(/?)$ /index.html [L]
-RewriteRule ^de(/?)$  /index.html [L]
-
-# If any pages that are not allowed are accessed, redirect to the corresponding error page
-
-RewriteRule ^en-GB/(.*)$  /en-GB/error/ [R]
-RewriteRule ^de/(.*)$  /de/error/ [R]
-
+<IfModule mod_rewrite.c>
+   RewriteEngine On
+   RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
