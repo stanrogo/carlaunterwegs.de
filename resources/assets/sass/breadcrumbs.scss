@@ -1,0 +1,15 @@
+.breadcrumb{
+
+  li{
+    display: inline;
+  }
+
+  .divider{
+    background: inherit;
+    color: #cacaca;
+  }
+
+  .active{
+    color: grey;
+  }
+}

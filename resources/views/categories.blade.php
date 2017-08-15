@@ -1,4 +1,6 @@
 <div id="categories" class="white">
+
+
     <h1 class="categories--heading">Categories</h1>
     <hr class="categories--break">
 

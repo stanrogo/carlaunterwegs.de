@@ -63,6 +63,7 @@ return [
         Contentful\Laravel\ContentfulServiceProvider::class,
         GrahamCampbell\Markdown\MarkdownServiceProvider::class,
         Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
+        DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
     ],
 
     'aliases' => [
@@ -102,6 +103,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
+        'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
     ],
 
 ];

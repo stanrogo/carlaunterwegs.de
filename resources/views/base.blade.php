@@ -48,6 +48,11 @@
 
             <main class="container container--main">
                 <div class="row">
+
+                    <div class="col s12">
+                        @include('breadcrumbs')
+                    </div>
+
                     <div class="col s12 l9">
 
                         @include('posts')
