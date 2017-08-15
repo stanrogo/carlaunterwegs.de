@@ -36,7 +36,7 @@
             }(document, 'script', 'facebook-jssdk'));</script>
 
         <div id="app" class="language-{{LaravelLocalization::getCurrentLocale()}}">
-            @include('header');
+            @include('header')
 
             <main class="container container--main">
                 <div class="row">

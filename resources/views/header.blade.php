@@ -1,7 +1,7 @@
 <header id="header" class="js-header">
 
     <div class="image-wrapper js-header--cover">
-        <img src="{{ secure_asset('images/background1.jpg')}}">
+        <img src="{{ asset('images/background1.jpg', \App::environment() == 'production')}}">
     </div>
 
     <div class="container container--header js-container-header">
