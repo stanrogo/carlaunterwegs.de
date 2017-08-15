@@ -47,7 +47,7 @@
 
     <!----------------- Main Content ------------------>
 
-    <img src="{{ URL::secure_asset('images/error.svg')}}" class="cartoon-image"/>
+    <img src="{{ secure_asset('images/error.svg')}}" class="cartoon-image"/>
 
     <div class="main-message js-main-message">
         <h1 class="js-">
