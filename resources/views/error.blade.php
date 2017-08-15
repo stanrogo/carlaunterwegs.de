@@ -57,23 +57,21 @@
     </div>
 
     <script type="text/javascript">
-        const locale = window.location.pathname.split('/')[1];
-        document.getElementsByTagName('body')[0].classList.add(`language-${locale}`);
         const container = document.querySelector('.js-main-message');
         let html = '';
 
-        if(locale === 'de'){
+        if('{{LaravelLocalization::getCurrentLocale()}}' === 'en-GB'){
 
             html = `
-            <h1 class="error-call-out">Oops. Wir konnen das nicht finden!</h1>
-            <a href="/de/">Kliken Sie hier</a> nach Hause zu gehen.
+            <h1 class="error-call-out">Oops. We couldn't find that place you're looking for!</h1>
+            <a href="/en-GB/">Click here</a> to go back to the homepage.
         `;
         }
         else{
 
             html = `
-            <h1 class="error-call-out">Oops. We couldn't find that place you're looking for!</h1>
-            <a href="/en-GB/">Click here</a> to go back to the homepage.
+            <h1 class="error-call-out">Oops. Wir konnen das nicht finden!</h1>
+            <a href="/de/">Kliken Sie hier</a> nach Hause zu gehen.
         `;
         }
 
