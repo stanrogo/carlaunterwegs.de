@@ -25,7 +25,20 @@ Route::group([
             'base',
             [
                 'posts' => $controller->showPost(),
-                'about' => $controller->showAbout()
+                'about' => $controller->showAbout(),
+                'categories' => $controller->showCategories(),
+            ]
+        );
+    });
+
+    Route::get('/categories/{category}', function($category, \App\Http\Controllers\BlogController $controller)
+    {
+        return view(
+            'base',
+            [
+                'posts' => $controller->showPost($category),
+                'about' => $controller->showAbout(),
+                'categories' => $controller->showCategories(),
             ]
         );
     });

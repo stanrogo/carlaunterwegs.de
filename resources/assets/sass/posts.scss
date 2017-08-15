@@ -68,8 +68,12 @@
 
 /* ------ tag styling ----- */
 
-#posts-container .post-block--tagged-in{
-  padding-right: 0.5rem;
+.post-block--meta{
+  font-size: 0.8rem;
+}
+
+#posts-container .post-block--author-name{
+  padding: 0 0.5rem 0 0;
 }
 
 #posts-container .post-block--tag-icon{
@@ -77,5 +81,5 @@
 }
 
 #posts-container .post-block--tag-text{
-  margin: 0 0.5rem 0 0.25rem;
+  margin: 0 0rem 0 0.25rem;
 }

@@ -23,6 +23,14 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="{{ URL::asset('css/materialize.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="{{ URL::asset('css/app.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-9066939875282995",
+                enable_page_level_ads: true
+            });
+        </script>
     </head>
     <body>
         <div id="fb-root"></div>
@@ -47,7 +55,23 @@
                     </div>
                     <div class="col s12 l3">
 
-                        @include('about')
+                        <div class="row">
+
+                            <div class="col s12">
+
+                                @include('about')
+
+                            </div>
+
+                            <div class="col s12">
+                                <div class="section">
+
+                                    @include('categories')
+
+                                </div>
+
+                            </div>
+                        </div>
 
                     </div>
                 </div>

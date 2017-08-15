@@ -14,6 +14,7 @@ class BlogController extends Controller{
      */
     private $client;
     private $locale;
+    private $categories;
 
     public function __construct(DeliveryClient $client){
 
@@ -31,9 +32,15 @@ class BlogController extends Controller{
         return ($a->getDate()->getTimestamp() > $b->getDate()->getTimestamp()) ? -1 : 1;
     }
 
-    public function showPost(){
+    public function showPost($category = null){
 
         $query = (new Query())->setContentType('post')->setLocale($this->locale);
+
+        if($category !== null){
+
+            $query = $query->where('fields.tags', $category, 'in');
+        }
+
         $posts = $this->client->getEntries($query);
 
         if(!count($posts)){
@@ -59,5 +66,34 @@ class BlogController extends Controller{
         }
 
         return $about->getItems()[0];
+    }
+
+    public function showCategories(){
+
+        $query = (new Query())->setContentType('post')->setLocale($this->locale);
+        $posts = $this->client->getEntries($query);
+
+        if(!count($posts)){
+
+            abort(404);
+        }
+
+        $categories = [];
+
+        $items = $posts->getItems();
+
+        foreach($items as $item){
+
+            $tags = $item->getTags();
+
+            foreach($tags as $tag){
+
+                if(!in_array($tag, $categories, true)){
+                    array_push($categories, $tag);
+                }
+            }
+        }
+
+        return $categories;
     }
 }

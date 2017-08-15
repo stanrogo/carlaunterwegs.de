@@ -11,22 +11,18 @@
 
                 <h1 class="post-block--title">{{$post->getTitle()}}</h1>
 
-                <hr/>
 
-                <div class="flex-vertical-center">
-                    <span class="post-block--tagged-in">Tagged in: </span>
+                <div class="flex-vertical-center post-block--meta">
 
+                    <i class="material-icons post-block--tag-icon grey-text">create</i>
+                    <span class="post-block--author-name">Carla Demmering</span>
+
+                    <i class="material-icons post-block--tag-icon grey-text">label</i>
                     @foreach ($post->getTags() as $tag)
-
-                    <span class="flex-vertical-center">
-                            <i class="material-icons post-block--tag-icon">label</i>
-                            <span class="post-block--tag-text">{{$tag}}</span>
-                        </span>
-
+                        <span class="post-block--tag-text">{{$tag}}@if ($loop->remaining > 0),@endif</span>
                     @endforeach
-                </div>
 
-                <hr/>
+                </div>
 
                 <div class="post-block--content light">{!! \GrahamCampbell\Markdown\Facades\Markdown::convertToHtml($post->getContent()) !!}</div>
             </article>
