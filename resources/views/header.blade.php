@@ -1,7 +1,7 @@
 <header id="header" class="js-header">
 
     <div class="image-wrapper js-header--cover">
-        <img src="{{ URL::asset('images/background1.jpg')}}">
+        <img src="{{ URL::secure_asset('images/background1.jpg')}}">
     </div>
 
     <div class="container container--header js-container-header">
