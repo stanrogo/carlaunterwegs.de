@@ -1,12 +1,13 @@
 <?php
 
-Breadcrumbs::register('home', function($breadcrumbs){
+use DaveJamesMiller\Breadcrumbs\Generator;
+
+Breadcrumbs::register('home', function(Generator $breadcrumbs){
 
     $breadcrumbs->push('Home', route('home'));
 });
 
-// Home > Blog > [Category]
-Breadcrumbs::register('categories', function($breadcrumbs, $category)
+Breadcrumbs::register('categories', function(Generator $breadcrumbs, $category)
 {
     $breadcrumbs->parent('home');
     $breadcrumbs->push($category, route('categories', $category));
