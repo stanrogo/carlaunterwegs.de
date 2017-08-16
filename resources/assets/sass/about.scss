@@ -1,28 +1,13 @@
-#about-me{
-  position: relative;
-  padding: 1rem;
+#about-me {
+    .about-me--photo{
+        display: block;
+        width: 50%;
+        margin: 0 auto;
+        clip-path: circle(45% at center);
+    }
 
-  .about-me--heading{
-    font-size: 1.5rem;
-    padding: 1rem;
-    margin: 0;
-    font-weight: 300;
-  }
-
-  .about-me--text{
-    padding: 1rem;
-  }
-
-  .profile-photo{
-    display: block;
-    width: 50%;
-    margin: 0 auto;
-    clip-path: circle(45% at center);
-  }
-
-  .about-me--break{
-    width: 50%;
-    margin: 0 auto;
-  }
+    .about-me--break{
+        width: 50%;
+    }
 }
 

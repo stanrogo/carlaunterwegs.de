@@ -1,12 +1,14 @@
-<div id="categories" class="white">
+<div id="categories" class="card-wrapper sidebar-module">
 
-
-    <h1 class="categories--heading">Categories</h1>
-    <hr class="categories--break">
-
+    <h1>Categories</h1>
+    <hr>
     <ul>
         @foreach($categories as $category)
-            <li><a href="/categories/{{$category->getName()}}" class="categories-category-link">{{$category->getName()}}</a></li>
+            <li>
+                <a href="/categories/{{$category->getName()}}">
+                    {{$category->getName()}}
+                </a>
+            </li>
         @endforeach
     </ul>
 </div>
