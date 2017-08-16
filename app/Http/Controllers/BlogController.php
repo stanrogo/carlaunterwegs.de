@@ -42,7 +42,7 @@ class BlogController extends Controller{
         $about = $this->_retrieveAbout();
         $categories = $this->_retrieveCategories();
 
-        return view('base', [
+        return view('pages.home', [
             'posts' => $posts,
             'about' => $about[0],
             'categories' => $categories,
@@ -83,7 +83,7 @@ class BlogController extends Controller{
 
         $posts = new ResourceArray($postsArray, sizeof($postsArray), 10, 0);
 
-        return view('base', [
+        return view('pages.home', [
             'posts' => $posts,
             'about' => $about[0],
             'categories' => $categories,
