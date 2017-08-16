@@ -11,36 +11,22 @@
 |
 */
 
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
-    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    'middleware' => [
+        'localeSessionRedirect',
+        'localizationRedirect',
+        'localeViewPath'
+    ]
 ], function(){
 
-    Route::get('/', function(\App\Http\Controllers\BlogController $controller){
-        return view(
-            'base',
-            [
-                'posts' => $controller->showPost(),
-                'about' => $controller->showAbout(),
-                'categories' => $controller->showCategories(),
-                'name' => 'home'
-            ]
-        );
-    })->name('home');
+    Route::get('/', [
+        'as' => 'home',
+        'uses' => 'BlogController@showIndex',
+    ]);
 
-    Route::get('/categories/{category}', function($category, \App\Http\Controllers\BlogController $controller){
-
-        return view(
-            'base',
-            [
-                'posts' => $controller->showPost($category),
-                'about' => $controller->showAbout(),
-                'categories' => $controller->showCategories(),
-                'name' => 'categories',
-                'param' => $category
-            ]
-        );
-    })->name('categories');
+    Route::get('/categories/{categoryName}', [
+        'as' => 'categories',
+        'uses' => 'BlogController@showCategory',
+    ]);
 });

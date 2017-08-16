@@ -19,7 +19,7 @@
 
                     <i class="material-icons post-block--tag-icon grey-text">label</i>
                     @foreach ($post->getTags() as $tag)
-                        <span class="post-block--tag-text">{{$tag}}@if ($loop->remaining > 0),@endif</span>
+                        <span class="post-block--tag-text">{{$tag->getName()}}@if ($loop->remaining > 0),@endif</span>
                     @endforeach
 
                 </div>

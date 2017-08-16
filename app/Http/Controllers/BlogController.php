@@ -5,16 +5,23 @@ namespace App\Http\Controllers;
 
 use Contentful\Delivery\Client as DeliveryClient;
 use Contentful\Delivery\Query;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Contentful\ResourceArray;
+use LaravelLocalization;
 
 class BlogController extends Controller{
 
-    /**
-     * @var DeliveryClient
-     */
     private $client;
     private $locale;
-    private $categories;
+
+    const CT_POST = 'post';
+    const CT_ABOUT = 'about';
+    const CT_CATEGORY = 'categories';
+
+    /**
+     * BlogController constructor.
+     *
+     * @param DeliveryClient $client - the contentful delivery client
+     */
 
     public function __construct(DeliveryClient $client){
 
@@ -23,77 +30,91 @@ class BlogController extends Controller{
         setlocale(LC_TIME, $this->locale);
     }
 
-    private static function _sortByDate($a, $b){
+    /**
+     * Retrieve a view containing every piece of available content
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
 
-        if($a->getDate()->getTimestamp() === $b->getDate()->getTimestamp()) {
+    public function showIndex(){
 
-            return 0;
-        }
-        return ($a->getDate()->getTimestamp() > $b->getDate()->getTimestamp()) ? -1 : 1;
+        $posts = $this->_retrievePosts();
+        $about = $this->_retrieveAbout();
+        $categories = $this->_retrieveCategories();
+
+        return view('base', [
+            'posts' => $posts,
+            'about' => $about[0],
+            'categories' => $categories,
+            'showPrevious' => $posts->getSkip() > 0,
+            'showNext' => count($posts) + $posts->getSkip() > $posts->getTotal(),
+            'name' => 'home',
+        ]);
     }
 
-    public function showPost($category = null){
+    /**
+     * Get the view for when a category has been selected
+     *
+     * @param [String} $categoryName -  the name of the category to filter on
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
 
-        $query = (new Query())->setContentType('post')->setLocale($this->locale);
+    public function showCategory($categoryName){
 
-        if($category !== null){
+        $posts = $this->_retrievePosts();
+        $about = $this->_retrieveAbout();
+        $categories = $this->_retrieveCategories();
 
-            $query = $query->where('fields.tags', $category, 'in');
-        }
+        // Do manual filtering and object reconstruction
 
-        $posts = $this->client->getEntries($query);
+        $postsArray = [];
 
-        if(!count($posts)){
+        foreach($posts->getIterator() as $post_key => $post){
 
-            abort(404);
-        }
+            foreach($post->getTags() as $tag){
 
-        $items = $posts->getItems();
+                if($tag->getName() === $categoryName){
 
-        uasort($items, Array($this, '_sortByDate'));
-
-        return $items;
-    }
-
-    public function showAbout(){
-
-        $query = (new Query())->setContentType('about')->setLocale($this->locale);
-        $about = $this->client->getEntries($query);
-
-        if(!count($about)){
-
-            abort(404);
-        }
-
-        return $about->getItems()[0];
-    }
-
-    public function showCategories(){
-
-        $query = (new Query())->setContentType('post')->setLocale($this->locale);
-        $posts = $this->client->getEntries($query);
-
-        if(!count($posts)){
-
-            abort(404);
-        }
-
-        $categories = [];
-
-        $items = $posts->getItems();
-
-        foreach($items as $item){
-
-            $tags = $item->getTags();
-
-            foreach($tags as $tag){
-
-                if(!in_array($tag, $categories, true)){
-                    array_push($categories, $tag);
+                    array_push($postsArray, $post);
+                    break;
                 }
             }
         }
 
-        return $categories;
+        $posts = new ResourceArray($postsArray, sizeof($postsArray), 10, 0);
+
+        return view('base', [
+            'posts' => $posts,
+            'about' => $about[0],
+            'categories' => $categories,
+            'showPrevious' => $posts->getSkip() > 0,
+            'showNext' => count($posts) + $posts->getSkip() > $posts->getTotal(),
+            'name' => 'categories',
+            'param' => $categoryName
+        ]);
+   }
+
+    private function _retrievePosts(){
+
+        $query = (new Query())
+            ->setContentType(self::CT_POST)
+            ->setLocale($this->locale);
+        return $this->client->getEntries($query);
+    }
+
+   private function _retrieveAbout(){
+
+       $query = (new Query())
+           ->setContentType(self::CT_ABOUT)
+           ->setLocale($this->locale);
+       return $this->client->getEntries($query);
+   }
+
+    private function _retrieveCategories(){
+
+        $query = (new Query())
+            ->setContentType(self::CT_CATEGORY)
+            ->setLocale($this->locale);
+        return $this->client->getEntries($query);
     }
 }

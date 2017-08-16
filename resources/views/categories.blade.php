@@ -6,7 +6,7 @@
 
     <ul>
         @foreach($categories as $category)
-            <li><a href="/categories/{{$category}}" class="categories-category-link">{{$category}}</a></li>
+            <li><a href="/categories/{{$category->getName()}}" class="categories-category-link">{{$category->getName()}}</a></li>
         @endforeach
     </ul>
 </div>
