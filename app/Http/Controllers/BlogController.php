@@ -98,7 +98,8 @@ class BlogController extends Controller{
 
         $query = (new Query())
             ->setContentType(self::CT_POST)
-            ->setLocale($this->locale);
+            ->setLocale($this->locale)
+            ->where('order', '-fields.date');
         return $this->client->getEntries($query);
     }
 
