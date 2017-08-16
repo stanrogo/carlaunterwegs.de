@@ -39,3 +39,43 @@
 .module-spacing{
     margin: 0.75rem 0;
 }
+
+div.slideIn {
+    transform: translate3d(0, 0, 0);
+    animation-name: hide, slideIn;
+    animation-duration: 0.5s, 0.5s;
+    animation-delay: 0s, 0.25s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    opacity: 1;
+}
+
+div.slideIn.slideIn--1{
+    animation-duration: 0.5s, 0.5s;
+    animation-delay: 0s, 0.5s;
+}
+
+div.slideIn.slideIn--2{
+    animation-duration: 0.75s, 0.5s;
+    animation-delay: 0s, 0.75s;
+}
+
+div.slideIn.slideIn--3{
+    animation-duration: 1s, 0.5s;
+    animation-delay: 0s, 1s;
+}
+
+div.slideIn.slideIn--4{
+    animation-duration: 1.25s, 0.5s;
+    animation-delay: 0s, 1.25s;
+}
+
+@keyframes hide{
+    0% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+@keyframes slideIn{
+    0% { opacity: 0; transform: translate3d(0, 1rem, 0); }
+    100% { opacity: 1; transform: translate3d(0, 0, 0); }
+}

@@ -1,8 +1,8 @@
 <section id="posts" class="row">
 
-    @foreach ($posts as $post)
+    @foreach ($posts as $indexKey => $post)
 
-        <div class="col s12 module-spacing">
+        <div class="col s12 module-spacing slideIn slideIn--{{$indexKey}}">
             <div class="posts--date flex-vertical-center black white-text">
                 <i class="material-icons ">date_range</i>
                 <span>
