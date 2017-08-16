@@ -1,12 +1,8 @@
-.page-footer{
-    padding: 20px 0;
-}
+#footer{
+    margin: 0.75rem 0 0 0;
+    padding: 1rem 0;
 
-.page-footer .row{
-    margin-bottom: 0;
-}
-
-.page-footer-column{
-    display: flex;
-    align-items: center;
+    .footer--icon{
+        padding-right: 0.5rem;
+    }
 }
