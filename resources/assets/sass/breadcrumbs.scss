@@ -1,15 +1,14 @@
-.breadcrumb{
+.breadcrumb {
+    li {
+        display: inline;
+    }
 
-  li{
-    display: inline;
-  }
+    .divider {
+        background: inherit;
+        color: #cacaca;
+    }
 
-  .divider{
-    background: inherit;
-    color: #cacaca;
-  }
-
-  .active{
-    color: grey;
-  }
+    .active {
+        color: grey;
+    }
 }
