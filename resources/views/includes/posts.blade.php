@@ -1,30 +1,32 @@
-<section id="posts-container" class="row">
+<section id="posts" class="row">
 
     @foreach ($posts as $post)
 
-        <div class="col s12 post-block">
-            <div class="date-container black">
-                <i class="material-icons white-text">date_range</i>
-                <span class="date-container--date white-text">{{strftime("%A, %B %d, %Y", $post->getDate()->getTimestamp())}}</span>
+        <div class="col s12 module-spacing">
+            <div class="posts--date flex-vertical-center black white-text">
+                <i class="material-icons ">date_range</i>
+                <span>
+                    {{strftime("%A, %B %d, %Y", $post->getDate()->getTimestamp())}}
+                </span>
             </div>
-            <article class="post-block--article white">
+            <article class="card-wrapper">
 
-                <h1 class="post-block--title">{{$post->getTitle()}}</h1>
+                <h1 class="posts--title">{{$post->getTitle()}}</h1>
 
 
-                <div class="flex-vertical-center post-block--meta">
+                <div class="flex-vertical-center posts--meta grey-text">
 
-                    <i class="material-icons post-block--tag-icon grey-text">create</i>
-                    <span class="post-block--author-name">Carla Demmering</span>
+                    <i class="material-icons posts--meta--icon ">create</i>
+                    <span class="posts--meta--text">Carla Demmering</span>
 
-                    <i class="material-icons post-block--tag-icon grey-text">label</i>
+                    <i class="material-icons posts--meta--icon ">label</i>
                     @foreach ($post->getTags() as $tag)
-                        <span class="post-block--tag-text">{{$tag->getName()}}@if ($loop->remaining > 0),@endif</span>
+                        <span>{{$tag->getName()}}@if ($loop->remaining > 0),&nbsp;@endif</span>
                     @endforeach
 
                 </div>
 
-                <div class="post-block--content light">{!! \GrahamCampbell\Markdown\Facades\Markdown::convertToHtml($post->getContent()) !!}</div>
+                <div class="posts--content light">{!! \GrahamCampbell\Markdown\Facades\Markdown::convertToHtml($post->getContent()) !!}</div>
             </article>
 
             <div class="fb-comments"

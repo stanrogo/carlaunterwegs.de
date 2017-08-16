@@ -1,4 +1,4 @@
-<div id="categories" class="card-wrapper sidebar-module">
+<div id="categories" class="card-wrapper sidebar-module module-spacing">
 
     <h1>Categories</h1>
     <hr>

@@ -1,85 +1,48 @@
-/* ---- date styling ---- */
+#posts{
+    .posts--date {
+        position: relative;
+        margin-bottom: -1.25rem;
+        padding: 0.5rem 1rem;
+        float: left;
+        z-index: 25;
+    }
 
-#posts-container .date-container{
-  position: relative;
-  display: flex;
-  float: left;
-  clear: both;
-  align-items: center;
-  margin-bottom: -1.25rem;
-}
+    .posts--title {
+        font-size: 2.25rem;
+    }
 
-#posts-container .date-container--date{
-  padding: 0 1rem 0 0;
-  text-transform: uppercase;
-}
+    .posts--content{
+        h1, h2, h3{
+            font-weight: 400;
+        }
 
-/* ------ article styling ----- */
+        h1{
+            font-size: 2rem;
+        }
 
-#posts-container .post-block {
-  position: relative;
-  margin-bottom: 1rem;
-}
+        h2{
+            font-size: 1.75rem;
+        }
 
-#posts-container .post-block:last-child{
-  margin-bottom: 0;
-}
+        h3{
+            font-size: 1.5rem;
+        }
 
-#posts-container .post-block--article{
-  padding: 1.5rem 1rem;
-  clear: both;
-}
+        img{
+            margin-left: -1rem;
+            width: calc(100% + 2rem);
+        }
+    }
 
-#posts-container .post-block--article img{
-  margin-left: -1rem;
-  width: calc(100% + 2rem);
-}
+    .posts--meta{
+        font-size: 0.8rem;
 
-#posts-container .post-block--title{
-  font-size: 2.25rem;
-}
+        .posts--meta--text{
+            padding: 0 0.5rem 0 0;
+        }
 
-#posts-container .post-block--content h1{
-  font-size: 2rem;
-  font-weight: 400;
-}
-
-#posts-container .post-block--content h2{
-  font-size: 1.75rem;
-  font-weight: 400;
-}
-
-#posts-container .post-block--content h3{
-  font-size: 1.5rem;
-  font-weight: 400;
-}
-
-@media all and (min-width: 768px){
-
-  #posts-container .post-block--article{
-    padding: 1.5rem 2rem;
-  }
-
-  #posts-container .post-block--article img{
-    margin-left: -2rem;
-    width: calc(100% + 4rem);
-  }
-}
-
-/* ------ tag styling ----- */
-
-.post-block--meta{
-  font-size: 0.8rem;
-}
-
-#posts-container .post-block--author-name{
-  padding: 0 0.5rem 0 0;
-}
-
-#posts-container .post-block--tag-icon{
-  padding: 0;
-}
-
-#posts-container .post-block--tag-text{
-  margin: 0 0rem 0 0.25rem;
+        .posts--meta--icon{
+            padding: 0 0.25rem 0 0;
+        }
+    }
 }

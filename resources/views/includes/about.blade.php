@@ -1,4 +1,4 @@
-<div id="about-me" class="card-wrapper sidebar-module">
+<div id="about-me" class="card-wrapper sidebar-module module-spacing">
     <img class='about-me--photo'
          src="{{ asset('images/carla.jpg', \App::environment() == 'production')}}"
     >
